@@ -3,7 +3,7 @@ import { Instagram, Dribbble, Twitter, Youtube, Send } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#583B8E] text-white">
+    <footer className="bg-[#402178] text-white">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-4">
         {/* 1) Brand */}
         <div>
@@ -43,9 +43,9 @@ export default function Footer() {
           <h4 className="text-sm font-semibold">Navegación</h4>
           <ul className="mt-5 space-y-3 text-sm text-white/80">
             <li><Link className="hover:text-white" href="#servicios">Servicios</Link></li>
-            <li><Link className="hover:text-white" href="#proyectos">Proyectos</Link></li>
+            <li><Link className="hover:text-white" href="/projects">Proyectos</Link></li>
             <li><Link className="hover:text-white" href="#nosotros">Nosotros</Link></li>
-            <li><Link className="hover:text-white" href="#faq">FAQ</Link></li>
+            <li><Link className="hover:text-white" href="/faq">FAQ</Link></li>
             <li><Link className="hover:text-white" href="#shopify-plus">Shopify Plus</Link></li>
           </ul>
         </div>
@@ -54,8 +54,8 @@ export default function Footer() {
         <div>
           <h4 className="text-sm font-semibold">Contáctanos</h4>
           <ul className="mt-5 space-y-3 text-sm text-white/80">
-            <li><Link className="hover:text-white" href="#contacto">¡Hablemos!</Link></li>
-            <li><Link className="hover:text-white" href="#contacto">Agenda tu llamada</Link></li>
+            <li><Link className="hover:text-white" href="/contact">¡Hablemos!</Link></li>
+            <li><Link className="hover:text-white" href="/contact">Agenda tu llamada</Link></li>
             <li>
               <a className="hover:text-white" href="mailto:correo@gmail.com">
                 correo@gmail.com

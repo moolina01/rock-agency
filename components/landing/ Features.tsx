@@ -1,47 +1,83 @@
+"use client";
+
+import { motion } from "framer-motion";
 import FeatureCard from "./FeatureCard";
+
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const features = [
   {
-    title: "Creación eCommerce",
+    title: (
+      <>
+        Creación <br />
+        eCommerce
+      </>
+    ),
     description:
-      "Creamos tiendas Shopify optimizadas para vender desde el primer día.",
-    icon: "🛍️",
+      "Expertos en Shopify, creamos tu tienda de alto impacto, optimizada para vender desde el primer día.",
   },
   {
-    title: "Migración a Shopify",
+    title: (
+      <>
+        Migración <br />
+        a Shopify
+      </>
+    ),
     description:
-      "Migramos tu tienda sin pérdida de datos ni posicionamiento SEO.",
-    icon: "🚀",
+      "Migramos y rediseñamos tu tienda a Shopify desde cualquier plataforma. Ganarás velocidad y eficiencia sin esfuerzo.",
   },
   {
-    title: "Asesoría y acompañamiento",
+    title: (
+      <>
+        Asesoría <br />y compañía
+      </>
+    ),
     description:
-      "Te ayudamos a optimizar y escalar tu tienda constantemente.",
-    icon: "🤝",
+      "Te ayudamos a dominar tus herramientas y optimizar tu tienda para aumentar tu rentabilidad y tasa de conversión.",
   },
 ];
 
 export default function Features() {
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto max-w-6xl px-6">
-
+    <section id="servicios" className="bg-white py-24">
+      <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold text-zinc-900">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease }}
+          className="mb-20 text-center"
+        >
+          <h2 className="text-4xl font-extrabold text-zinc-900">
             ¿Qué servicios te ofrecemos?
           </h2>
-          <p className="mt-4 text-zinc-600">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-zinc-500">
             Con nuestra ayuda tu negocio alcanzará su máximo potencial
           </p>
-        </div>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid gap-10 md:grid-cols-3">
-          {features.map((feature) => (
-            <FeatureCard key={feature.title} {...feature} />
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ staggerChildren: 0.12 }}
+          className="grid gap-10 md:grid-cols-3"
+        >
+          {features.map((feature, i) => (
+            <motion.div
+              key={i}
+              variants={{
+                hidden: { opacity: 0, y: 16 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.6, ease }}
+            >
+              <FeatureCard {...feature} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
