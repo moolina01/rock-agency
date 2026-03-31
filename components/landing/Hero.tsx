@@ -118,7 +118,7 @@ export default function Hero() {
             className="relative mx-auto max-w-[520px] p-6"
           >
             <Image
-              src="/heroimagen.png"
+              src="/imagen11.png"
               alt="Ilustración ecommerce"
               width={520}
               height={420}

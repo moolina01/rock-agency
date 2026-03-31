@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-
+import Image from "next/image";
 type NavItem = {
   label: string;
   href: string;
@@ -74,13 +74,17 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <span className="grid h-7 w-7 place-items-center rounded bg-[#402178] text-xs font-bold text-white">
-            Ra
-          </span>
-          <span className="text-sm font-extrabold tracking-wide text-zinc-900">
-            ROCK AGENCY
-          </span>
-        </Link>
+  <Image
+    src="/logo.png"
+    alt="Rock Agency"
+    width={28}
+    height={28}
+    className="rounded"
+  />
+  <span className="text-sm font-extrabold tracking-wide text-zinc-900">
+    ROCK AGENCY
+  </span>
+</Link>
 
         {/* Links (desktop) */}
         <nav className="hidden items-center gap-8 md:flex">

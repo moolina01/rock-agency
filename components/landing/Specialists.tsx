@@ -25,7 +25,7 @@ export default function Specialists() {
 
           <div className="relative mx-auto max-w-[560px] p-6">
             <Image
-              src="/especializastas.png"
+              src="/specialist.png"
               alt="Ilustración de ecommerce"
               width={560}
               height={420}

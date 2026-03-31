@@ -4,13 +4,13 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
 const partners = [
-  { name: "Shopify", src: "/partner-shopify.svg" },
-  { name: "Shopify", src: "/partner-shopify.svg" },
-  { name: "Shopify", src: "/partner-shopify.svg" },
-  { name: "Shopify", src: "/partner-shopify.svg" },
-  { name: "Shopify", src: "/partner-shopify.svg" },
-  { name: "Shopify", src: "/partner-shopify.svg" },
-  { name: "Shopify", src: "/partner-shopify.svg" },
+  { name: "Shopify", src: "/shopify.webp" },
+  { name: "Shopify", src: "/fintoc.png" },
+  { name: "Shopify", src: "/shipit.webp" },
+  { name: "Shopify", src: "/zoho.png" },
+   { name: "Shopify", src: "/flow.png" },
+  // { name: "Shopify", src: "/partner-shopify.svg" },
+  // { name: "Shopify", src: "/partner-shopify.svg" },
 ];
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];

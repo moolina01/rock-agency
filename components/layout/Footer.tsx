@@ -57,8 +57,8 @@ export default function Footer() {
             <li><Link className="hover:text-white" href="/contact">¡Hablemos!</Link></li>
             <li><Link className="hover:text-white" href="/contact">Agenda tu llamada</Link></li>
             <li>
-              <a className="hover:text-white" href="mailto:correo@gmail.com">
-                correo@gmail.com
+              <a className="hover:text-white" href="mailto:renato@rockagency.cl">
+                renato@rockagency.cl
               </a>
             </li>
             <li><Link className="hover:text-white" href="#terminos">Términos y condiciones</Link></li>
@@ -73,7 +73,7 @@ export default function Footer() {
             <div className="relative w-full max-w-[260px]">
               <input
                 type="email"
-                placeholder="Tu correo electrónico"
+                placeholder="renato@rockagency.cl"
                 className="w-full rounded-lg bg-white/10 px-4 py-2 pr-10 text-sm text-white placeholder:text-white/60 outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-white/25"
               />
               <button

@@ -15,6 +15,7 @@ const features = [
     ),
     description:
       "Expertos en Shopify, creamos tu tienda de alto impacto, optimizada para vender desde el primer día.",
+    image: "/creacion_ecommerce.png",
   },
   {
     title: (
@@ -25,7 +26,9 @@ const features = [
     ),
     description:
       "Migramos y rediseñamos tu tienda a Shopify desde cualquier plataforma. Ganarás velocidad y eficiencia sin esfuerzo.",
+    image: "/migracion_shopify.png",
   },
+  
   {
     title: (
       <>
@@ -34,9 +37,9 @@ const features = [
     ),
     description:
       "Te ayudamos a dominar tus herramientas y optimizar tu tienda para aumentar tu rentabilidad y tasa de conversión.",
+    image: "/asesoria_compania.png",
   },
 ];
-
 export default function Features() {
   return (
     <section id="servicios" className="bg-white py-24">

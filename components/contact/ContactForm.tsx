@@ -8,7 +8,7 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const SERVICIOS = [
   "Tienda nueva desde cero",
-  "Rediseño de tienda existente",
+  "Rediseño de tienda existente", 
   "Migración a Shopify",
   "Shopify Plus",
   "Optimización y CRO",
@@ -105,7 +105,7 @@ export default function ContactForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease }}
       noValidate
-      className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm"
+      className="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-8 shadow-sm"
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {/* Nombre */}

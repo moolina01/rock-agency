@@ -1,5 +1,5 @@
 import ContactForm from "@/components/contact/ContactForm";
-import { Mail, MessageCircle, Clock, Store, Award, Zap } from "lucide-react";
+import { Mail, MessageCircle, Clock, Award, Zap } from "lucide-react";
 
 export const metadata = {
   title: "Contacto — Rock Agency",
@@ -8,8 +8,7 @@ export const metadata = {
 
 const trustItems = [
   { icon: Clock, text: "Respondemos en menos de 24 horas" },
-  { icon: Store, text: "Más de 50 tiendas Shopify lanzadas" },
-  { icon: Award, text: "Shopify Partners certificados" },
+  { icon: Award, text: "Shopify Partners"},
   { icon: Zap, text: "Sin contratos largos — arrancamos cuando quieras" },
 ];
 
@@ -22,10 +21,10 @@ export default function ContactPage() {
         <div className="absolute bottom-0 right-[-80px] h-[400px] w-[400px] rounded-full bg-indigo-300/15 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-6 py-20">
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-12 md:py-20">
         {/* Header */}
-        <div className="mx-auto mb-14 max-w-2xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-4 py-2 text-sm text-zinc-700 shadow-sm backdrop-blur">
+        <div className="mx-auto mb-10 md:mb-14 max-w-2xl text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1.5 text-xs sm:text-sm text-zinc-700 shadow-sm backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-[#402178]" />
             Sin compromiso · Respuesta garantizada
           </div>
@@ -78,10 +77,10 @@ export default function ContactPage() {
                   className="flex items-center gap-3 text-sm text-zinc-600 hover:text-[#402178] transition"
                 >
                   <Mail className="h-4 w-4 shrink-0" strokeWidth={1.8} />
-                  mhuryy22@gmail.com
+                  renato@rockagency.cl
                 </a>
                 <a
-                  href="https://wa.me/521234567890"
+                  href="https://wa.me/976322336"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-sm text-zinc-600 hover:text-[#402178] transition"
