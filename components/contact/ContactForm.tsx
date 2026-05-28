@@ -139,7 +139,7 @@ export default function ContactForm() {
             name="whatsapp"
             value={fields.whatsapp}
             onChange={handleChange}
-            placeholder="+52 55 0000 0000"
+            placeholder="949 378 795"
             className={inputClass(false)}
           />
         </Field>

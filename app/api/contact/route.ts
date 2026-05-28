@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
   const { error } = await resend.emails.send({
     from: "Rock Agency <onboarding@resend.dev>",
-    to: "mhuryy22@gmail.com",
+    to: "renato@rockagency.cl",
     subject: `Nuevo contacto de ${nombre} — ${servicio}`,
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #18181b;">

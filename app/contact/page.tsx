@@ -1,5 +1,5 @@
 import ContactForm from "@/components/contact/ContactForm";
-import { Mail, MessageCircle, Clock, Award, Zap } from "lucide-react";
+import { MessageCircle, Clock, Award, Zap, MapPin } from "lucide-react";
 
 export const metadata = {
   title: "Contacto — Rock Agency",
@@ -73,14 +73,7 @@ export default function ContactPage() {
               </h2>
               <div className="mt-5 space-y-3">
                 <a
-                  href="mailto:mhuryy22@gmail.com"
-                  className="flex items-center gap-3 text-sm text-zinc-600 hover:text-[#402178] transition"
-                >
-                  <Mail className="h-4 w-4 shrink-0" strokeWidth={1.8} />
-                  renato@rockagency.cl
-                </a>
-                <a
-                  href="https://wa.me/976322336"
+                  href="https://wa.me/56949378795"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-sm text-zinc-600 hover:text-[#402178] transition"
@@ -88,6 +81,26 @@ export default function ContactPage() {
                   <MessageCircle className="h-4 w-4 shrink-0" strokeWidth={1.8} />
                   WhatsApp
                 </a>
+              </div>
+
+              <div className="mt-6 border-t border-zinc-100 pt-5 space-y-4">
+                <h3 className="text-xs font-semibold uppercase tracking-widest text-zinc-400">Nuestras Oficinas</h3>
+                <div className="flex items-start gap-3 text-sm text-zinc-600">
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-[#402178]" strokeWidth={1.8} />
+                  <div>
+                    <p className="font-semibold text-zinc-800">HQ Chile</p>
+                    <p>Av. Apoquindo 5950</p>
+                    <p>Las Condes, Santiago</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 text-sm text-zinc-600">
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-[#402178]" strokeWidth={1.8} />
+                  <div>
+                    <p className="font-semibold text-zinc-800">HQ Argentina</p>
+                    <p>El Salvador 5707</p>
+                    <p>Palermo, Buenos Aires</p>
+                  </div>
+                </div>
               </div>
             </div>
           </aside>
