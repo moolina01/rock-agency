@@ -26,7 +26,7 @@ const plans: Plan[] = [
     name: "Launch",
     price: "$1.500.000",
     tagline: "E-commerce funcional listo para operar",
-    delivery: "~2–3 semanas",
+    delivery: "~2–4 semanas",
     accent: "#3B82F6",
     ctaLabel: "Empezar con Launch",
     highlights: [
@@ -40,7 +40,7 @@ const plans: Plan[] = [
     name: "Growth",
     price: "$2.500.000",
     tagline: "E-commerce estructurado y escalable",
-    delivery: "~4–5 semanas",
+    delivery: "~4–6 semanas",
     accent: "#402178",
     ctaLabel: "Empezar con Growth",
     inheritsFrom: "Launch",
