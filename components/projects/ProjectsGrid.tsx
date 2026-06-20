@@ -17,7 +17,7 @@ const projects: Project[] = [
     name: "Ramon-amazonian-conservation",
     category: "Fundacion",
     description: "En Proceso de Creacion E-commers para fundacion",
-    image: "/projects/placeholder.svg",
+    image: "/projects/ramonamazonia.png",
     url: "https://ramon-amazonian-conservation.myshopify.com",
   },
   {

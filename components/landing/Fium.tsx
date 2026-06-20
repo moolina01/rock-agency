@@ -100,14 +100,10 @@ export default function Fium() {
           {/* Halo de marca */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 mx-auto my-auto h-[380px] w-[380px] rounded-full bg-gradient-to-br from-[#4B2BE0]/15 to-[#C9F03C]/15 blur-2xl"
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-300/20 blur-3xl"
           />
 
-          <motion.div
-            animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-[280px] rounded-[2.5rem] border-[6px] border-zinc-900 bg-zinc-900 shadow-2xl"
-          >
+          <div className="relative w-[280px] rounded-[2.5rem] border-[6px] border-zinc-900 bg-zinc-900 shadow-2xl">
             {/* Notch */}
             <div className="absolute left-1/2 top-0 z-10 h-5 w-28 -translate-x-1/2 rounded-b-2xl bg-zinc-900" />
 
@@ -178,7 +174,7 @@ export default function Fium() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
