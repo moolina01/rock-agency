@@ -19,7 +19,7 @@ export default function Partners() {
   const track = [...partners, ...partners, ...partners, ...partners];
 
   return (
-    <section className="relative overflow-hidden bg-white pb-20">
+    <section className="relative overflow-hidden bg-white py-20">
       {/* Fade en bordes (look premium) */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />

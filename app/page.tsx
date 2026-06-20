@@ -12,8 +12,8 @@ export default function Home() {
     <>
 
    <Hero/>
-   <Features/>
    <Partners/>
+   <Features/>
    <Specialists/>
    <Fium/>
    <Plans/>
