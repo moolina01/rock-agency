@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidad — Rock Agency",
+  title: "Política de Privacidad",
   description:
     "Cómo Rock Agency recopila, usa y protege tus datos personales.",
 };

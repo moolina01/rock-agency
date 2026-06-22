@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Términos y Condiciones — Rock Agency",
+  title: "Términos y Condiciones",
   description:
     "Términos y condiciones de uso y contratación de los servicios de Rock Agency.",
 };

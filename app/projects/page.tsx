@@ -2,7 +2,7 @@ import ProjectsGrid from "@/components/projects/ProjectsGrid";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Proyectos — Rock Agency",
+  title: "Proyectos",
   description: "Portafolio de tiendas Shopify diseñadas y desarrolladas por Rock Agency.",
 };
 

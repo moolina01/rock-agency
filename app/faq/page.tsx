@@ -2,7 +2,7 @@ import FaqAccordion from "@/components/faq/FaqAccordion";
 import Link from "next/link";
 
 export const metadata = {
-  title: "FAQ — Rock Agency",
+  title: "FAQ",
   description: "Preguntas frecuentes sobre nuestros servicios de desarrollo de tiendas Shopify.",
 };
 

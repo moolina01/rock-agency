@@ -2,7 +2,7 @@ import ContactForm from "@/components/contact/ContactForm";
 import { MessageCircle, Clock, Award, Zap, MapPin } from "lucide-react";
 
 export const metadata = {
-  title: "Contacto — Rock Agency",
+  title: "Contacto",
   description: "Hablemos de tu tienda Shopify. Te respondemos en menos de 24 horas.",
 };
 
