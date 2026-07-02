@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     q: "¿Qué incluye el servicio de creación de tienda?",
-    a: "configuración completa de Shopify, carga inicial de productos, configuración de métodos de pago y envío, optimización básica de SEO, y una sesión de capacitación, Todo lo necesario para que tu tienda esté lista para vender desde el día uno.",
+    a: "configuración completa de Shopify, carga inicial de productos, configuración de métodos de pago y envío, y una sesión de capacitación, Todo lo necesario para que tu tienda esté lista para vender desde el día uno.",
   },
   {
     q: "¿Ustedes se encargan del mantenimiento después del lanzamiento?",

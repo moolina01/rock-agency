@@ -90,7 +90,7 @@ export default function Hero() {
           >
             <span className="inline-flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-zinc-400" />
-              Performance & SEO
+              Performance
             </span>
             <span className="inline-flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-zinc-400" />
