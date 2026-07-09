@@ -1,29 +1,60 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 type NavItem = {
   label: string;
   href: string;
-  variant?: "highlight";
 };
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
+  { label: "Diagnóstico", href: "#diagnostico" },
   { label: "Servicios", href: "#servicios" },
+  { label: "Fium", href: "#fium" },
+  { label: "Integraciones", href: "#integraciones" },
   { label: "Planes", href: "#planes" },
   { label: "Proyectos", href: "/projects" },
-  { label: "Nosotros", href: "#nosotros" },
   { label: "FAQ", href: "/faq" },
-  { label: "Shopify Plus", href: "#shopify-plus", variant: "highlight" },
 ];
+
+const sectionIds = navItems
+  .filter((item) => item.href.startsWith("#"))
+  .map((item) => item.href.slice(1));
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
   const pathname = usePathname();
   const router = useRouter();
+
+  // Scroll-spy: resalta el link de la sección que está pasando por el centro del viewport
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length === 0) return;
+        const closest = visible.reduce((a, b) =>
+          a.boundingClientRect.top < b.boundingClientRect.top ? a : b
+        );
+        setActiveHash(`#${closest.target.id}`);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [pathname]);
 
   function handleNavClick(e: React.MouseEvent, href: string) {
     if (!href.startsWith("#")) {
@@ -49,72 +80,84 @@ export default function Navbar() {
     window.scrollTo({ top: y, behavior: "smooth" });
   }
 
-  function getLinkClass(item: NavItem, mobile = false) {
-    if (item.variant === "highlight") {
-      return mobile
-        ? "rounded-lg px-3 py-2 text-sm font-semibold text-emerald-600 hover:bg-zinc-50"
-        : "text-sm font-semibold text-emerald-600 hover:text-emerald-700";
-    }
+  function isItemActive(item: NavItem) {
+    if (item.href.startsWith("/")) return pathname === item.href;
+    return pathname === "/" && activeHash === item.href;
+  }
 
-    const isActive =
-      item.href.startsWith("/") && pathname === item.href;
-
+  function getLinkClass(active: boolean, mobile = false) {
     if (mobile) {
-      return isActive
-        ? "rounded-lg px-3 py-2 text-sm font-semibold text-[#402178] bg-violet-50"
-        : "rounded-lg px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50";
+      return active
+        ? "rounded-lg px-3 py-2 text-sm font-semibold text-indigo bg-indigo-tint"
+        : "rounded-lg px-3 py-2 text-sm text-ink-soft hover:bg-paper-2";
     }
 
-    return isActive
-      ? "relative text-sm font-semibold text-[#402178] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[#402178]"
-      : "text-sm text-zinc-600 hover:text-zinc-900";
+    return active
+      ? "relative text-sm font-semibold text-indigo transition-colors duration-300"
+      : "group relative text-sm font-medium text-ink-soft transition-colors duration-300 hover:text-ink";
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="sticky top-0 z-50 w-full border-b border-line bg-paper/85 backdrop-blur-md">
+      <div className="mx-auto flex h-[78px] max-w-[1220px] items-center justify-between px-6 sm:px-10">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3">
-  <Image
-    src="/logo.png"
-    alt="Rock Agency"
-    width={28}
-    height={28}
-    className="rounded"
-  />
-  <span className="text-sm font-extrabold tracking-wide text-zinc-900">
-    ROCK AGENCY
-  </span>
-</Link>
+        <Link href="/" className="flex items-center gap-2.75 font-heading text-[17px] font-extrabold">
+          <Image
+            src="/logo.png"
+            alt="Rock Agency"
+            width={30}
+            height={30}
+            className="h-[30px] w-[30px] flex-shrink-0 rounded-lg"
+          />
+          ROCK AGENCY
+        </Link>
 
         {/* Links (desktop) */}
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className={getLinkClass(item)}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-8.5 lg:flex">
+          {navItems.map((item) => {
+            const active = isItemActive(item);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={getLinkClass(active)}
+              >
+                <motion.span
+                  className="inline-block"
+                  animate={{ scale: active ? 1.08 : 1 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 22 }}
+                >
+                  {item.label}
+                </motion.span>
+                {active ? (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute inset-x-0 -bottom-1 h-[1.5px] rounded-full bg-indigo"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                ) : (
+                  <span className="absolute inset-x-0 -bottom-1 h-[1.5px] w-0 bg-indigo transition-all duration-200 group-hover:w-full" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right actions */}
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="hidden rounded-full bg-[#402178] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-violet-800 md:inline-flex"
+            className="hidden rounded-full bg-ink px-5.5 py-2.75 text-sm font-semibold text-paper transition hover:-translate-y-0.5 lg:inline-flex"
           >
-            ¡Contáctanos!
+            Hablemos →
           </Link>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Abrir menú"
-            className="inline-flex items-center justify-center rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-800 shadow-sm hover:bg-zinc-50 md:hidden"
+            className="inline-flex items-center justify-center rounded-lg border border-line bg-paper-2 px-3 py-2 text-sm text-ink lg:hidden"
           >
             ☰
           </button>
@@ -123,16 +166,16 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden">
-          <div className="mx-auto max-w-6xl px-6 pb-4">
-            <div className="rounded-xl border border-zinc-200 bg-white p-3 shadow-sm">
+        <div className="lg:hidden">
+          <div className="mx-auto max-w-[1220px] px-6 pb-4 sm:px-10">
+            <div className="rounded-xl border border-line bg-paper-2 p-3">
               <div className="flex flex-col">
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={getLinkClass(item, true)}
+                    className={getLinkClass(isItemActive(item), true)}
                   >
                     {item.label}
                   </Link>
@@ -140,9 +183,9 @@ export default function Navbar() {
 
                 <Link
                   href="/contact"
-                  className="mt-2 inline-flex items-center justify-center rounded-full bg-[#402178] px-4 py-2 text-sm font-semibold text-white hover:bg-violet-800"
+                  className="mt-2 inline-flex items-center justify-center rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper"
                 >
-                  ¡Contáctanos!
+                  Hablemos →
                 </Link>
               </div>
             </div>

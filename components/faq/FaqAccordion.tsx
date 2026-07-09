@@ -63,16 +63,16 @@ export default function FaqAccordion() {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.5, ease }}
-            className="rounded-2xl border border-zinc-200 bg-white shadow-sm overflow-hidden"
+            className="overflow-hidden rounded-2xl border border-line bg-paper-2"
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}
               className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
             >
-              <span className="text-sm font-semibold text-zinc-900 md:text-base">
+              <span className="text-sm font-semibold text-ink md:text-base">
                 {faq.q}
               </span>
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-50 text-[#402178] transition-colors">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-indigo-tint text-indigo transition-colors">
                 {isOpen ? <Minus className="h-3.5 w-3.5" strokeWidth={2.5} /> : <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />}
               </span>
             </button>
@@ -86,7 +86,7 @@ export default function FaqAccordion() {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.35, ease }}
                 >
-                  <p className="px-6 pb-5 text-sm leading-relaxed text-zinc-500">
+                  <p className="px-6 pb-5 text-sm leading-relaxed text-ink-soft">
                     {faq.a}
                   </p>
                 </motion.div>

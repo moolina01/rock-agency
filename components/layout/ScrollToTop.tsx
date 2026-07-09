@@ -47,7 +47,7 @@ export default function ScrollToTop() {
         scale: visible ? 1 : 0.9,
       }}
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-      className={`group fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#402178] text-white shadow-lg transition-colors hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-violet-300 ${
+      className={`group fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-indigo text-white shadow-lg transition-colors hover:bg-indigo-dark focus:outline-none focus:ring-2 focus:ring-indigo/40 ${
         visible ? "" : "pointer-events-none"
       }`}
     >

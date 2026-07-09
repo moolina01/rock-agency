@@ -35,7 +35,7 @@ const sections: Section[] = [
         consulta relacionada con tus datos personales puedes escribirnos a{" "}
         <a
           href="mailto:mhuryy22@gmail.com"
-          className="font-medium text-[#402178] underline"
+          className="font-medium text-indigo underline"
         >
           mhuryy22@gmail.com
         </a>
@@ -48,17 +48,17 @@ const sections: Section[] = [
     body: (
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <span className="font-medium text-zinc-800">Datos que nos entregas:</span>{" "}
+          <span className="font-medium text-ink">Datos que nos entregas:</span>{" "}
           nombre, correo electrónico, teléfono/WhatsApp, nombre de tu negocio y la
           información incluida en el formulario de contacto.
         </li>
         <li>
-          <span className="font-medium text-zinc-800">Datos de navegación:</span>{" "}
+          <span className="font-medium text-ink">Datos de navegación:</span>{" "}
           información técnica como dirección IP, tipo de dispositivo, navegador y
           páginas visitadas, recopilada mediante herramientas de analítica.
         </li>
         <li>
-          <span className="font-medium text-zinc-800">Cookies:</span> pequeños
+          <span className="font-medium text-ink">Cookies:</span> pequeños
           archivos que permiten el funcionamiento del sitio y la medición de su
           uso.
         </li>
@@ -140,7 +140,7 @@ const sections: Section[] = [
         personales, así como oponerte o limitar su tratamiento, escribiéndonos a{" "}
         <a
           href="mailto:mhuryy22@gmail.com"
-          className="font-medium text-[#402178] underline"
+          className="font-medium text-indigo underline"
         >
           mhuryy22@gmail.com
         </a>
@@ -166,7 +166,7 @@ const sections: Section[] = [
         datos, escríbenos a{" "}
         <a
           href="mailto:mhuryy22@gmail.com"
-          className="font-medium text-[#402178] underline"
+          className="font-medium text-indigo underline"
         >
           mhuryy22@gmail.com
         </a>
@@ -178,26 +178,26 @@ const sections: Section[] = [
 
 export default function PrivacyPage() {
   return (
-    <main className="bg-[#f6f7fb]">
+    <main className="bg-paper">
       <div className="mx-auto max-w-3xl px-6 py-20">
         {/* Volver */}
         <Link
           href="/"
-          className="inline-flex items-center gap-1 text-sm font-medium text-zinc-500 transition hover:text-[#402178]"
+          className="inline-flex items-center gap-1 text-sm font-medium text-ink-soft transition hover:text-indigo"
         >
           ← Volver al inicio
         </Link>
 
         {/* Header */}
         <div className="mt-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm text-zinc-700 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-[#402178]" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-line bg-paper-2 px-4 py-2 font-mono text-xs tracking-[0.06em] text-ink-soft uppercase">
+            <span className="h-2 w-2 rounded-full bg-indigo" />
             Legal
           </div>
-          <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-zinc-900 md:text-4xl">
+          <h1 className="mt-5 text-3xl font-extrabold tracking-tight text-ink md:text-4xl">
             Política de Privacidad
           </h1>
-          <p className="mt-3 text-sm text-zinc-500">
+          <p className="mt-3 text-sm text-ink-soft">
             Última actualización: {LAST_UPDATED}
           </p>
         </div>
@@ -206,10 +206,10 @@ export default function PrivacyPage() {
         <div className="mt-10 space-y-10">
           {sections.map((section) => (
             <section key={section.title}>
-              <h2 className="text-lg font-bold text-zinc-900">
+              <h2 className="text-lg font-bold text-ink">
                 {section.title}
               </h2>
-              <div className="mt-3 text-sm leading-relaxed text-zinc-600">
+              <div className="mt-3 text-sm leading-relaxed text-ink-soft">
                 {section.body}
               </div>
             </section>

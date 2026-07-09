@@ -87,11 +87,11 @@ export default function ContactForm() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease }}
-        className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-zinc-200 bg-white px-8 py-16 text-center shadow-sm"
+        className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-line bg-paper-2 px-8 py-16 text-center"
       >
-        <CheckCircle className="h-12 w-12 text-[#402178]" strokeWidth={1.5} />
-        <h2 className="text-xl font-bold text-zinc-900">¡Mensaje recibido!</h2>
-        <p className="max-w-xs text-zinc-500">
+        <CheckCircle className="h-12 w-12 text-indigo" strokeWidth={1.5} />
+        <h2 className="text-xl font-bold text-ink">¡Mensaje recibido!</h2>
+        <p className="max-w-xs text-ink-soft">
           Gracias por escribirnos. Te contactaremos en menos de 24 horas.
         </p>
       </motion.div>
@@ -105,7 +105,7 @@ export default function ContactForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease }}
       noValidate
-      className="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-8 shadow-sm"
+      className="rounded-2xl border border-line bg-paper-2 p-5 sm:p-8"
     >
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {/* Nombre */}
@@ -200,7 +200,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#402178] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-violet-800 hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-violet-300"
+        className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-indigo px-7 py-3 text-sm font-semibold text-white shadow-[0_6px_0_var(--color-indigo-dark)] transition hover:-translate-y-0.5 hover:shadow-[0_8px_0_var(--color-indigo-dark)] disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-indigo/30"
       >
         {status === "loading" ? (
           <>
@@ -220,11 +220,11 @@ export default function ContactForm() {
 
 function inputClass(hasError: boolean) {
   return [
-    "w-full rounded-lg border bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400",
+    "w-full rounded-lg border bg-paper px-4 py-3 text-sm text-ink placeholder:text-ink-faint",
     "outline-none transition focus:ring-2",
     hasError
       ? "border-red-300 focus:ring-red-200"
-      : "border-zinc-200 focus:ring-violet-200 focus:border-violet-300",
+      : "border-line focus:border-indigo focus:ring-indigo-tint",
   ].join(" ");
 }
 
@@ -241,7 +241,7 @@ function Field({
 }) {
   return (
     <div className={className}>
-      <label className="mb-1.5 block text-sm font-medium text-zinc-700">{label}</label>
+      <label className="mb-1.5 block text-sm font-medium text-ink-soft">{label}</label>
       {children}
       <AnimatePresence>
         {error && (

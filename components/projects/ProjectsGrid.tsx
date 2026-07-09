@@ -7,47 +7,33 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const projects: Project[] = [
   {
-    name: "Recreo Minimarket",
-    category: "Minimarket & e-commers",
-    description: "Diseño y desarrollo completo desde cero Optimizada para mobile y con checkout personalizado.",
-    image: "/recreoiamge.png",
-    url: "https://recreominimarket.cl",
+    name: "Fium",
+    category: "Producto propio",
+    description:
+      "App de despacho express que desarrollamos e integramos nativamente a Shopify. Publicada y disponible en la Shopify App Store.",
+    logo: "/fium-logo.svg",
+    url: "https://apps.shopify.com/fium",
+    ctaLabel: "Ver en Shopify App Store",
+    variant: "compact",
   },
   {
-    name: "Ramon-amazonian-conservation",
-    category: "Fundacion",
-    description: "En Proceso de Creacion E-commers para fundacion",
+    name: "Ramón Amazonian Conservation",
+    category: "Fundación",
+    badge: "En desarrollo",
+    description:
+      "Tienda Shopify en desarrollo para una fundación dedicada a la conservación ambiental en la Amazonía.",
     image: "/projects/ramonamazonia.png",
     url: "https://ramon-amazonian-conservation.myshopify.com",
+    ctaLabel: "Ver preview",
   },
   {
-    name: "Próximamente",
-    category: "Shopify Plus",
-    description: "Desarrollo integral de tienda Shopify Plus para marca de equipo deportivo — diseño personalizado, catálogo optimizado y checkout de alto rendimiento",
-    image: "/projects/placeholder.svg",
-    url: "https://shopify.com",
+    name: "Recreo Minimarket",
+    category: "Minimarket & e-commerce",
+    description: "Tienda en operación, con catálogo extenso y checkout personalizado.",
+    stat: "500+ SKUs en catálogo activo",
+    url: "https://recreominimarket.cl",
+    variant: "compact",
   },
-  // {
-  //   name: "Ejemplo Tienda 4",
-  //   category: "Alimentos & Bebidas",
-  //   description: "Tienda con suscripciones recurrentes, diseño de marca y configuración de envíos locales.",
-  //   image: "/projects/placeholder.svg",
-  //   url: "https://shopify.com",
-  // },
-  // {
-  //   name: "Ejemplo Tienda 5",
-  //   category: "Salud & Belleza",
-  //   description: "Rediseño completo con enfoque en CRO. Páginas de producto optimizadas para conversión.",
-  //   image: "/projects/placeholder.svg",
-  //   url: "https://shopify.com",
-  // },
-  // {
-  //   name: "Ejemplo Tienda 6",
-  //   category: "Hogar & Deco",
-  //   description: "Desarrollo de tema personalizado desde cero con lookbook interactivo y filtros avanzados.",
-  //   image: "/projects/placeholder.svg",
-  //   url: "https://shopify.com",
-  // },
 ];
 
 export default function ProjectsGrid() {

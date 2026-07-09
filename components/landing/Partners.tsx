@@ -19,10 +19,10 @@ export default function Partners() {
   const track = [...partners, ...partners, ...partners, ...partners];
 
   return (
-    <section className="relative overflow-hidden bg-white py-20">
+    <section className="relative overflow-hidden bg-paper-2 py-20">
       {/* Fade en bordes (look premium) */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-paper-2 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-paper-2 to-transparent" />
 
       <div className="mx-auto max-w-6xl px-6">
         {/* Header */}
@@ -33,14 +33,14 @@ export default function Partners() {
           transition={{ duration: 0.7, ease }}
           className="flex flex-col items-center text-center"
         >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-4 py-2 text-sm text-zinc-700 shadow-sm backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-[#402178]" />
+          <div className="mb-5 inline-flex items-center gap-2 font-mono text-xs tracking-[0.08em] text-ink-soft uppercase">
+            <span className="h-1.5 w-1.5 rounded-full bg-indigo" />
             Partners e integraciones
           </div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-zinc-900 md:text-4xl">
+          <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl">
             Nuestros Partners
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-500 md:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-sm text-ink-soft md:text-base">
             Unidos por una búsqueda constante de la perfección y un propósito
             común.
           </p>
@@ -76,7 +76,7 @@ export default function Partners() {
 
 function Logo({ name, src }: { name: string; src: string }) {
   return (
-    <div className="flex h-[88px] w-[180px] flex-none items-center justify-center rounded-2xl border border-zinc-200 bg-white px-6 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-200 hover:shadow-md">
+    <div className="flex h-[88px] w-[180px] flex-none items-center justify-center rounded-2xl border border-line bg-paper px-6 transition hover:-translate-y-0.5 hover:border-indigo">
       <Image
         src={src}
         alt={name}

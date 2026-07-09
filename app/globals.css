@@ -1,26 +1,235 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-ink: #16151a;
+  --color-ink-soft: #56545e;
+  --color-ink-faint: #8b8994;
+
+  --color-paper: #f4f1ea;
+  --color-paper-2: #fbf9f3;
+  --color-paper-dim: #eae5d9;
+
+  --color-indigo: #4b2be0;
+  --color-indigo-dark: #33208f;
+  --color-indigo-tint: #ece9fc;
+
+  --color-lime: #c9f03c;
+  --color-green: #1f4c39;
+  --color-green-tint: #e7efe9;
+
+  --color-line: #d8d2c4;
+  --color-line-ink: #16151a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-indigo: var(--color-indigo);
+  --color-indigo-dark: var(--color-indigo-dark);
+  --color-indigo-tint: var(--color-indigo-tint);
+  --color-lime: var(--color-lime);
+  --color-green: var(--color-green);
+  --color-green-tint: var(--color-green-tint);
+  --color-line: var(--color-line);
+  --color-line-ink: var(--color-line-ink);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --animate-drift: drift 30s linear infinite;
+  --animate-float1: float1 14s ease-in-out infinite;
+  --animate-float2: float2 17s ease-in-out infinite;
+  --animate-markpulse: markpulse 3.5s ease-in-out infinite;
+  --animate-idlebob: idlebob 2.6s ease-in-out infinite;
+  --animate-spin-cart: spin-cart 0.26s linear infinite;
+  --animate-bump: bump 0.4s ease;
+  --animate-streakflow: streakflow 0.5s ease-in-out infinite;
+  --animate-ringpulse: ringpulse 2.2s ease-out infinite;
+  --animate-plusbounce: plusbounce 1.8s ease-in-out infinite;
+  --animate-scan: scan 3s ease-in-out infinite;
+  --animate-pop: pop 2.4s ease-in-out infinite;
+  --animate-blink: blink 1.4s ease infinite;
+  --animate-blink2: blink2 1.5s ease infinite;
+  --animate-pencilwrite: pencilwrite 1.7s ease-in-out infinite;
+  --animate-marquee: marquee-scroll 26s linear infinite;
+  --animate-route-draw: route-draw 5s ease-in-out infinite;
+  --animate-ping-soft: ping-soft 2s ease-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes drift {
+  to {
+    transform: translate(26px, 26px);
+  }
+}
+@keyframes float1 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, 30px);
+  }
+}
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(40px, -20px);
+  }
+}
+@keyframes markpulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+@keyframes idlebob {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -6px;
+  }
+}
+@keyframes spin-cart {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bump {
+  45% {
+    transform: scale(1.55);
+    background: var(--color-lime);
+    color: var(--color-green);
+  }
+}
+@keyframes streakflow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+@keyframes ringpulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+@keyframes plusbounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes scan {
+  0% {
+    top: -40px;
+  }
+  100% {
+    top: 170px;
+  }
+}
+@keyframes pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes blink2 {
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes pencilwrite {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  50% {
+    transform: translate(6px, -3px) rotate(-6deg);
+  }
+}
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes route-draw {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  55% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+  }
+}
+@keyframes ping-soft {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
 }

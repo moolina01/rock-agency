@@ -15,32 +15,35 @@ No test suite is configured.
 
 ## Architecture
 
-This is a **Next.js App Router** marketing landing page for "Rock Agency", a Shopify-focused digital agency. It uses TypeScript, Tailwind CSS 4, and Framer Motion for animations.
+This is a **Next.js App Router** marketing site for "Rock Agency", positioned as an e-commerce partner for Chilean supermarkets/minimarkets (Shopify + the in-house same-day delivery product **Fium**). It uses TypeScript, Tailwind CSS 4, and Framer Motion for animations.
 
 ### Page Structure
 
 The home page (`app/page.tsx`) composes all landing sections sequentially:
 
 ```
-Hero → Features → Partners → Specialists → Footer
+Hero → Partners → Diagnostico → Servicios → Fium → Integraciones → Numeros → Plans → Work → CtaStrip → Footer
 ```
 
-Navbar is rendered in the root layout (`app/layout.tsx`) and handles smooth scroll navigation to section IDs.
+Navbar is rendered in the root layout (`app/layout.tsx`) and handles smooth scroll navigation to section IDs (`#diagnostico`, `#servicios`, `#fium`, `#integraciones`, `#planes`). Real routes (`/contact`, `/faq`, `/projects`, `/legal/terms`, `/legal/privacy`) share the same design tokens.
 
 ### Component Organization
 
-- `components/landing/` — Section components for the landing page (Hero, Features, FeatureCard, Partners, Specialists)
-- `components/layout/` — Navbar and Footer
+- `components/landing/` — Section components for the landing page (Hero, Partners, Diagnostico, Servicios, Fium, Integraciones, Numeros, Plans, Work, CtaStrip)
+- `components/layout/` — Navbar, Footer, ScrollToTop
+- `components/ui/` — Shared primitives: `Reveal` (scroll-in-view fade/translate wrapper), `Annotation` (hand-drawn underline/circle SVG draw-on effect), `SectionMarker` (numbered section eyebrow), `Marquee` (infinite scrolling strip)
 
 ### Key Patterns
 
 - Components using Framer Motion require `"use client"` directives
 - Smooth scroll in Navbar uses `document.getElementById` with a pixel offset to account for the sticky header
-- Tailwind theme customization via CSS variables in `app/globals.css`
+- Scroll reveals go through the `Reveal` component (`whileInView`, respects `useReducedMotion`) rather than ad-hoc `motion.div` blocks
+- Decorative loops (blobs, marquee, pulses, spinners) are plain CSS `@keyframes` registered as Tailwind v4 `--animate-*` theme tokens in `app/globals.css`; JS-driven motion (Hero's cart sequence, Fium's courier-on-path) uses React state machines / `useAnimationFrame` instead of imperative DOM manipulation
+- Tailwind theme customization via CSS variables (`--color-*`, `--font-*`, `--animate-*`) in `app/globals.css`
 - Path alias `@/` maps to the project root (configured in `tsconfig.json`)
 
 ### Styling
 
-- **Primary color:** Violet/Purple (`#402178`)
-- **Fonts:** Poppins (headings/body, weights 400–800) and Geist (default)
+- **Palette:** `ink` `#16151A`, `paper` `#F4F1EA` (+ `paper-2`/`paper-dim`), `indigo` `#4B2BE0` (+ `indigo-dark`/`indigo-tint`), `lime` `#C9F03C`, `green` `#1F4C39`, `line` `#D8D2C4` — exposed as Tailwind utilities (`bg-indigo`, `text-ink-soft`, etc.) via `@theme` in `app/globals.css`
+- **Fonts:** Sora (`font-heading`, headings), Inter (`font-sans`, default body), JetBrains Mono (`font-mono`, prices/labels/eyebrows) — loaded via `next/font/google` in `app/layout.tsx`
 - Responsive breakpoints follow Tailwind defaults; most layouts go 1 col → 2–3 cols at `md`
