@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Annotation from "@/components/ui/Annotation";
 import SectionMarker from "@/components/ui/SectionMarker";
@@ -39,7 +40,7 @@ function CommissionCounter() {
 const tiles = [
   {
     scene: (
-      <div className="flex h-full flex-col items-center justify-center gap-1.5 bg-ink text-white">
+      <div className="flex h-full flex-col items-center justify-center gap-1.5 bg-[#16151a] text-white">
         <CommissionCounter />
         <div className="font-mono text-[10.5px] text-[#9C9AA6]">
           comisión por pedido en tu tienda
@@ -79,6 +80,36 @@ const tiles = [
 ];
 
 export default function Diagnostico() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [swiped, setSwiped] = useState(false);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+            const idx = cardRefs.current.findIndex((el) => el === entry.target);
+            if (idx !== -1) setActiveIndex(idx);
+          }
+        });
+      },
+      { root: track, threshold: 0.6 }
+    );
+
+    cardRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  function scrollToIndex(i: number) {
+    const card = cardRefs.current[i];
+    card?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+  }
+
   return (
     <section id="diagnostico" className="bg-paper py-24">
       <div className="mx-auto max-w-[1220px] px-6 sm:px-10">
@@ -92,24 +123,56 @@ export default function Diagnostico() {
             <Annotation type="circle">te sale caro</Annotation>
           </h2>
           <p className="text-[17px] text-ink-soft">
-            Si vendes $1.000.000 al mes por una app de reparto, hasta $300.000 se
-            van en comisiones. Con tu propia tienda, esa plata queda en tu caja.
+            Las apps de reparto cobran comisiones de hasta un 30% por pedido —
+            con tu propia tienda, ese margen queda en tu negocio.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5.5 md:grid-cols-3">
-          {tiles.map((tile, i) => (
-            <Reveal
-              key={tile.title}
-              delay={i as 0 | 1 | 2}
-              className="overflow-hidden rounded-2xl border border-line bg-paper-2 transition hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-22px_rgba(22,21,26,0.35)]"
+        <div className="relative">
+          <div
+            ref={trackRef}
+            onScroll={() => setSwiped(true)}
+            className="-mx-6 flex snap-x snap-mandatory gap-5.5 overflow-x-auto px-6 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0 md:snap-none [&::-webkit-scrollbar]:hidden"
+          >
+            {tiles.map((tile, i) => (
+              <Reveal
+                key={tile.title}
+                ref={(el) => {
+                  cardRefs.current[i] = el as HTMLDivElement | null;
+                }}
+                delay={i as 0 | 1 | 2}
+                className="w-[82%] max-w-[300px] flex-shrink-0 snap-start overflow-hidden rounded-2xl border border-line bg-paper-2 transition hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-22px_rgba(22,21,26,0.35)] md:w-auto md:max-w-none"
+              >
+                <div className="h-[170px] border-b border-line">{tile.scene}</div>
+                <div className="p-5.5 pt-5">
+                  <h3 className="mb-2 text-[19px] font-bold">{tile.title}</h3>
+                  <p className="text-sm text-ink-soft">{tile.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {!swiped && (
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[85px] right-2 flex h-9 w-9 -translate-y-1/2 animate-swipe-hint items-center justify-center rounded-full bg-ink/80 text-white md:hidden"
             >
-              <div className="h-[170px] border-b border-line">{tile.scene}</div>
-              <div className="p-5.5 pt-5">
-                <h3 className="mb-2 text-[19px] font-bold">{tile.title}</h3>
-                <p className="text-sm text-ink-soft">{tile.body}</p>
-              </div>
-            </Reveal>
+              <ChevronRight size={18} />
+            </div>
+          )}
+        </div>
+
+        <div className="mt-5 flex justify-center gap-2 md:hidden">
+          {tiles.map((tile, i) => (
+            <button
+              key={tile.title}
+              type="button"
+              aria-label={`Ir a ${tile.title}`}
+              onClick={() => scrollToIndex(i)}
+              className={`h-1.5 rounded-full transition-all ${
+                i === activeIndex ? "w-5 bg-indigo" : "w-1.5 bg-line"
+              }`}
+            />
           ))}
         </div>
       </div>

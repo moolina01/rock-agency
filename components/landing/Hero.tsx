@@ -4,9 +4,73 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Annotation from "@/components/ui/Annotation";
-import Marquee from "@/components/ui/Marquee";
 
 const lineEase: [number, number, number, number] = [0.2, 0.75, 0.2, 1];
+
+const TYPE_LINE_3 = "minimarkets.";
+
+function useTypewriterLoop() {
+  const reduceMotion = useReducedMotion();
+  const [line3, setLine3] = useState(() => (reduceMotion ? TYPE_LINE_3 : ""));
+  const [typing, setTyping] = useState(false);
+  const [showUnderline, setShowUnderline] = useState(() => !!reduceMotion);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    let cancelled = false;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const schedule = (fn: () => void, ms: number) => {
+      const id = setTimeout(() => {
+        if (!cancelled) fn();
+      }, ms);
+      timers.push(id);
+    };
+
+    function runCycle() {
+      setLine3("");
+      setShowUnderline(false);
+      setTyping(true);
+
+      const typeSpeed = 32;
+      const eraseSpeed = 22;
+      let t = 900;
+
+      for (let i = 1; i <= TYPE_LINE_3.length; i++) {
+        schedule(() => setLine3(TYPE_LINE_3.slice(0, i)), t);
+        t += typeSpeed;
+      }
+
+      schedule(() => {
+        setTyping(false);
+        setShowUnderline(true);
+      }, t);
+
+      t += 2600;
+
+      schedule(() => {
+        setShowUnderline(false);
+        setTyping(true);
+      }, t);
+      for (let i = TYPE_LINE_3.length - 1; i >= 0; i--) {
+        schedule(() => setLine3(TYPE_LINE_3.slice(0, i)), t);
+        t += eraseSpeed;
+      }
+
+      t += 600;
+      schedule(runCycle, t);
+    }
+
+    runCycle();
+
+    return () => {
+      cancelled = true;
+      timers.forEach(clearTimeout);
+    };
+  }, [reduceMotion]);
+
+  return { line3, typing, showUnderline };
+}
 
 const CART_ITEMS = [
   {
@@ -42,19 +106,6 @@ const CART_ITEMS = [
       "h-[34px] w-[24px] rounded-[5px] bg-[linear-gradient(160deg,#6FA0C6,#3E6C93)] before:absolute before:-top-1.5 before:left-1/2 before:h-2 before:w-2 before:-translate-x-1/2 before:rounded-[2px] before:bg-inherit",
   },
 ] as const;
-
-const marqueeItems = [
-  <>
-    <b className="font-semibold text-ink">$0 comisión</b> por pedido
-  </>,
-  <>
-    Reparto <b className="font-semibold text-ink">&lt;60 min</b> con Fium
-  </>,
-  "Sin contratar motoboy",
-  "Webpay · Mercado Pago · Fintoc",
-  "Precio por kilo y por unidad",
-  "Stock conectado a tu bodega",
-];
 
 function CartAnimation() {
   const reduceMotion = useReducedMotion();
@@ -233,13 +284,13 @@ function CartAnimation() {
             : "right-[-4%] -translate-y-1/2 scale-[0.7] opacity-0"
         }`}
       >
-        <div className="flex items-center gap-3 rounded-2xl border border-line bg-white px-5 py-4 shadow-[0_20px_40px_-18px_rgba(22,21,26,0.35)]">
+        <div className="flex items-center gap-3 rounded-2xl border border-[#d8d2c4] bg-white px-5 py-4 shadow-[0_20px_40px_-18px_rgba(22,21,26,0.35)]">
           <span className="relative h-2.5 w-2.5 flex-shrink-0 rounded-full bg-lime">
             <span className="absolute -inset-1.5 animate-ping-soft rounded-full border-[1.5px] border-lime" />
           </span>
           <div className="flex flex-col gap-0.5">
-            <span className="font-heading text-base font-extrabold text-ink">Fium</span>
-            <span className="font-mono text-[10.5px] text-ink-soft">En camino · &lt; 60 min</span>
+            <span className="font-heading text-base font-extrabold text-[#16151a]">Fium</span>
+            <span className="font-mono text-[10.5px] text-[#56545e]">En camino · &lt; 60 min</span>
           </div>
         </div>
       </div>
@@ -255,8 +306,10 @@ function CartAnimation() {
 export default function Hero() {
   const reduceMotion = useReducedMotion();
 
+  const { line3, typing, showUnderline } = useTypewriterLoop();
+
   return (
-    <section className="relative overflow-hidden pt-[76px] pb-11">
+    <section className="relative overflow-hidden pt-12 pb-11">
       {/* animated bg */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div
@@ -275,16 +328,16 @@ export default function Hero() {
       </div>
 
       <div className="relative z-[2] mx-auto max-w-[1220px] px-6 sm:px-10">
-        <div className="grid grid-cols-1 items-center gap-11 md:grid-cols-[1.08fr_0.92fr] md:gap-14">
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[1.08fr_0.92fr] md:gap-12">
           <div>
             <div className="inline-flex items-center gap-2.5 font-mono text-xs font-medium tracking-[0.05em] text-green uppercase">
               <span className="relative h-[7px] w-[7px] rounded-full bg-green">
                 <span className="absolute -inset-1 animate-ping-soft rounded-full border-[1.5px] border-green" />
               </span>
-              E-commerce para supermercados y minimarkets · Chile
+              Agencia Shopify Partners · Supermercados y minimarkets en Chile
             </div>
 
-            <h1 className="mt-5 mb-6 text-[34px] leading-[1.04] font-extrabold sm:text-5xl lg:text-[58px]">
+            <h1 className="mt-5 mb-5 text-[36px] leading-[1.05] font-extrabold sm:text-5xl lg:text-[58px]">
               <span className="block overflow-hidden">
                 <motion.span
                   className="block"
@@ -292,7 +345,7 @@ export default function Hero() {
                   animate={{ y: 0 }}
                   transition={{ duration: 0.9, ease: lineEase }}
                 >
-                  Tu supermercado,
+                  Expertos en <span className="text-indigo">eCommerce</span>
                 </motion.span>
               </span>
               <span className="block overflow-hidden">
@@ -302,18 +355,20 @@ export default function Hero() {
                   animate={{ y: 0 }}
                   transition={{ duration: 0.9, ease: lineEase, delay: 0.12 }}
                 >
-                  vendiendo <span className="text-indigo">online</span>
+                  para supermercados y
                 </motion.span>
               </span>
-              <span className="block overflow-hidden pb-5">
-                <motion.span
-                  className="block"
-                  initial={reduceMotion ? false : { y: "105%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.9, ease: lineEase, delay: 0.24 }}
-                >
-                  <Annotation type="underline">en serio.</Annotation>
-                </motion.span>
+              <span className="block min-h-[1.3em] pb-3 whitespace-nowrap">
+                {showUnderline ? (
+                  <Annotation type="underline">{TYPE_LINE_3}</Annotation>
+                ) : (
+                  <>
+                    {line3}
+                    {typing && !reduceMotion && (
+                      <span className="ml-0.5 inline-block h-[0.85em] w-[3px] translate-y-[0.12em] animate-blink bg-ink align-middle" />
+                    )}
+                  </>
+                )}
               </span>
             </h1>
 
@@ -321,10 +376,11 @@ export default function Hero() {
               initial={reduceMotion ? false : { opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="mb-8 max-w-[500px] text-lg text-ink-soft"
+              className="mb-6 max-w-[500px] text-lg text-ink-soft"
             >
-              Sin comisión por pedido, como en las apps de reparto. Y sin motoboy que
-              contratar: del reparto se encarga Fium.
+              Diseñamos y desarrollamos tiendas Shopify de alto rendimiento —
+              sin comisión por pedido, como en las apps de reparto, y con
+              reparto propio en menos de 60 minutos gracias a Fium.
             </motion.p>
 
             <motion.div
@@ -337,15 +393,15 @@ export default function Hero() {
                 href="/contact"
                 className="group inline-flex items-center gap-2.5 rounded-full bg-indigo px-7 py-4 text-[15px] font-semibold text-white shadow-[0_6px_0_var(--color-indigo-dark)] transition hover:-translate-y-0.5 hover:shadow-[0_8px_0_var(--color-indigo-dark)]"
               >
-                Diagnóstico gratis
+                Hablemos de tu proyecto
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
-              <a
-                href="#servicios"
+              <Link
+                href="/projects"
                 className="inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-ink px-7 py-4 text-[15px] font-semibold text-ink transition hover:bg-ink hover:text-paper"
               >
-                Ver cómo funciona
-              </a>
+                Ver casos de éxito
+              </Link>
             </motion.div>
           </div>
 
@@ -357,10 +413,6 @@ export default function Hero() {
           >
             <CartAnimation />
           </motion.div>
-        </div>
-
-        <div className="mt-14">
-          <Marquee items={marqueeItems} />
         </div>
       </div>
     </section>

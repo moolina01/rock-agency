@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --color-ink: #16151a;
   --color-ink-soft: #56545e;
@@ -19,6 +21,21 @@
 
   --color-line: #d8d2c4;
   --color-line-ink: #16151a;
+}
+
+.dark {
+  --color-ink: #f4f1ea;
+  --color-ink-soft: #c9c6d1;
+  --color-ink-faint: #8f8da0;
+
+  --color-paper: #16151a;
+  --color-paper-2: #1e1c24;
+  --color-paper-dim: #232129;
+
+  --color-indigo-tint: #241c46;
+
+  --color-line: #2c2a34;
+  --color-line-ink: #f4f1ea;
 }
 
 @theme inline {
@@ -59,6 +76,7 @@
   --animate-marquee: marquee-scroll 26s linear infinite;
   --animate-route-draw: route-draw 5s ease-in-out infinite;
   --animate-ping-soft: ping-soft 2s ease-out infinite;
+  --animate-swipe-hint: swipe-hint 1.4s ease-in-out infinite;
 }
 
 @keyframes drift {
@@ -204,6 +222,15 @@
     opacity: 0;
   }
 }
+@keyframes swipe-hint {
+  0%,
+  100% {
+    transform: translate(0, -50%);
+  }
+  50% {
+    transform: translate(-6px, -50%);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -224,6 +251,15 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 h1,

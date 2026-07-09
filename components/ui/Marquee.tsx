@@ -8,7 +8,7 @@ export default function Marquee({ items, dark = false }: { items: ReactNode[]; d
   const track = [...items, ...items];
 
   return (
-    <div className={`overflow-hidden border-t border-b py-5 ${dark ? "border-white/10" : "border-line"}`}>
+    <div className={`overflow-hidden border-t border-b py-4 ${dark ? "border-white/10" : "border-line"}`}>
       <div
         className={`flex w-max gap-13 whitespace-nowrap ${
           reduceMotion ? "" : "animate-marquee"

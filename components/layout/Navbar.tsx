@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 type NavItem = {
   label: string;
@@ -146,6 +147,8 @@ export default function Navbar() {
 
         {/* Right actions */}
         <div className="flex items-center gap-3">
+          <ThemeToggle className="hidden lg:inline-flex" />
+
           <Link
             href="/contact"
             className="hidden rounded-full bg-ink px-5.5 py-2.75 text-sm font-semibold text-paper transition hover:-translate-y-0.5 lg:inline-flex"
@@ -181,12 +184,15 @@ export default function Navbar() {
                   </Link>
                 ))}
 
-                <Link
-                  href="/contact"
-                  className="mt-2 inline-flex items-center justify-center rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper"
-                >
-                  Hablemos →
-                </Link>
+                <div className="mt-2 flex items-center gap-2.5">
+                  <Link
+                    href="/contact"
+                    className="inline-flex flex-1 items-center justify-center rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper"
+                  >
+                    Hablemos →
+                  </Link>
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </div>

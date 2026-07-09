@@ -1,126 +1,168 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { ShoppingCart, Store, Package, ChevronRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionMarker from "@/components/ui/SectionMarker";
 
-function IconEmptyCart() {
-  return (
-    <div className="relative flex h-24 items-center justify-center border-b border-line bg-paper-dim">
-      <div className="absolute h-16 w-16 animate-ringpulse rounded-full border-[1.5px] border-indigo opacity-40" />
-      <svg viewBox="0 0 90 68" fill="none" className="relative z-[1] w-16">
-        <path
-          d="M8 8 H16 L24 46 H70 L78 20 H26"
-          stroke="var(--color-indigo)"
-          strokeWidth={4.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx={32} cy={58} r={6.5} stroke="var(--color-indigo)" strokeWidth={4.5} />
-        <circle cx={62} cy={58} r={6.5} stroke="var(--color-indigo)" strokeWidth={4.5} />
-      </svg>
-      <span className="absolute top-2 right-[calc(50%-40px)] z-[2] flex h-[22px] w-[22px] animate-plusbounce items-center justify-center rounded-full bg-lime font-heading text-sm font-bold text-green">
-        +
-      </span>
-    </div>
-  );
-}
-
-function IconSlowBrowser() {
-  return (
-    <div className="relative flex h-24 items-center justify-center border-b border-line bg-paper-dim">
-      <div className="relative h-14 w-19 overflow-hidden rounded-lg border-[1.5px] border-line bg-paper-2">
-        <div className="flex gap-1 border-b border-line px-1.5 py-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-ink opacity-20" />
-          <span className="h-1.5 w-1.5 rounded-full bg-ink opacity-20" />
-          <span className="h-1.5 w-1.5 rounded-full bg-ink opacity-20" />
-        </div>
-        <div className="flex h-[calc(100%-17px)] items-center justify-center">
-          <div className="h-5 w-5 animate-spin rounded-full border-[3px] border-paper-dim border-t-indigo [animation-duration:0.9s]" />
-        </div>
-      </div>
-      <span className="absolute -right-1.5 -bottom-2 animate-blink2 rounded-full bg-[#FBE6E3] px-2 py-0.75 font-mono text-[9.5px] font-semibold text-[#C7402F]">
-        lento…
-      </span>
-    </div>
-  );
-}
-
-function IconNotebook() {
-  return (
-    <div className="relative flex h-24 items-center justify-center border-b border-line bg-paper-dim">
-      <div className="flex h-16 w-13 flex-col gap-2 rounded-md border-[1.5px] border-line bg-paper-2 px-2.5 py-2.75">
-        <div className="h-[3px] rounded bg-line" />
-        <div className="h-[3px] w-[55%] rounded bg-line" />
-        <div className="h-[3px] rounded bg-line" />
-      </div>
-      <div className="absolute top-2.5 left-[calc(50%+18px)] animate-pencilwrite">
-        <div className="relative h-5 w-[3px] rotate-[38deg] rounded-t-[2px] bg-indigo">
-          <span className="absolute -bottom-1 -left-[2.5px] h-0 w-0 border-x-[3.5px] border-t-[5px] border-x-transparent border-t-ink" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const services = [
   {
-    letter: "A",
-    icon: <IconEmptyCart />,
-    title: "Todavía no vendes online",
-    body: "Partimos con tus productos esenciales, tu gente sigue trabajando igual y del reparto se encarga Fium. En pocas semanas estás recibiendo pedidos.",
+    icon: <ShoppingCart size={22} />,
+    image: "/Supermercados-Online.png",
+    title: "Supermercados Online",
+    body: "Soluciones robustas para catálogos grandes, múltiples sucursales y alta demanda.",
   },
   {
-    letter: "B",
-    icon: <IconSlowBrowser />,
-    title: "Tienes página, pero no vende",
-    body: "Te mostramos gratis por qué no vende — velocidad, catálogo, medios de pago — y la reconstruimos sin que pierdas tus clientes ni tu posición en Google.",
+    icon: <Store size={22} />,
+    image: "/minimarkets.png",
+    title: "Minimarkets",
+    body: "Tiendas ágiles, fáciles de administrar y adaptadas a tu comunidad.",
   },
   {
-    letter: "C",
-    icon: <IconNotebook />,
-    title: "Vendes, pero todo a mano",
-    body: "Integramos tu caja y tu bodega a la página: el stock se actualiza solo, los pedidos llegan ordenados y nadie digita dos veces.",
+    icon: <Package size={22} />,
+    title: "Distribuidoras Mayoristas",
+    body: "Catálogos B2B, precios por volumen, cotizaciones y compras personalizadas.",
   },
 ];
 
 export default function Servicios() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [swiped, setSwiped] = useState(false);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+            const idx = cardRefs.current.findIndex((el) => el === entry.target);
+            if (idx !== -1) setActiveIndex(idx);
+          }
+        });
+      },
+      { root: track, threshold: 0.6 }
+    );
+
+    cardRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  function scrollToIndex(i: number) {
+    const card = cardRefs.current[i];
+    card?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+  }
+
   return (
     <section id="servicios" className="bg-paper-2 py-24">
       <div className="mx-auto max-w-[1220px] px-6 sm:px-10">
         <Reveal>
-          <SectionMarker num="02" label="Servicios" />
+          <SectionMarker num="02" label="Soluciones para cada tipo de negocio" />
         </Reveal>
 
         <Reveal delay={1} className="mb-13 max-w-[700px]">
           <h2 className="mb-4.5 text-[30px] leading-[1.03] font-extrabold sm:text-4xl lg:text-[50px]">
-            ¿Partiendo de cero o con una página que no vende?
+            Plataformas diseñadas para tu industria
           </h2>
           <p className="text-[17px] text-ink-soft">
-            Da lo mismo dónde estés parado hoy. Estos son los tres caminos con
-            que llevamos tu supermercado a vender online en serio.
+            Entendemos los desafíos de tu negocio y creamos soluciones que
+            generan resultados reales.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 overflow-hidden rounded-2xl border border-line bg-paper md:grid-cols-3">
-          {services.map((svc, i) => (
-            <Reveal
-              key={svc.letter}
-              delay={i as 0 | 1 | 2}
-              className={`transition hover:-translate-y-1 ${
-                i < services.length - 1
-                  ? "border-b border-line md:border-r md:border-b-0"
-                  : ""
-              }`}
+        <div className="relative">
+          <div
+            ref={trackRef}
+            onScroll={() => setSwiped(true)}
+            className="-mx-6 flex snap-x snap-mandatory gap-5.5 overflow-x-auto px-6 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0 md:snap-none [&::-webkit-scrollbar]:hidden"
+          >
+            {services.map((svc, i) =>
+              svc.image ? (
+                <Reveal
+                  key={svc.title}
+                  ref={(el) => {
+                    cardRefs.current[i] = el as HTMLDivElement | null;
+                  }}
+                  delay={i as 0 | 1 | 2}
+                  className="flex w-[82%] max-w-[300px] flex-shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-[#16151a] transition hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-22px_rgba(22,21,26,0.35)] md:w-auto md:max-w-none"
+                >
+                  <div className="relative h-[190px] w-full flex-shrink-0">
+                    <Image
+                      src={svc.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 33vw, 82vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#16151a] via-[#16151a]/15 to-transparent" />
+                  </div>
+                  <div className="relative -mt-8 flex flex-1 flex-col px-7.5 pb-7.5">
+                    <span className="mb-5 inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-lime text-green">
+                      {svc.icon}
+                    </span>
+                    <h3 className="mb-2.5 text-xl font-bold text-white">{svc.title}</h3>
+                    <p className="mb-5.5 flex-grow text-[14.5px] text-[#B4B2BE]">{svc.body}</p>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-lime"
+                    >
+                      Ver solución
+                      <span>→</span>
+                    </Link>
+                  </div>
+                </Reveal>
+              ) : (
+                <Reveal
+                  key={svc.title}
+                  ref={(el) => {
+                    cardRefs.current[i] = el as HTMLDivElement | null;
+                  }}
+                  delay={i as 0 | 1 | 2}
+                  className="flex w-[82%] max-w-[300px] flex-shrink-0 snap-start flex-col rounded-2xl border border-line bg-paper p-7.5 transition hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-22px_rgba(22,21,26,0.35)] md:w-auto md:max-w-none"
+                >
+                  <span className="mb-5 inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-lime text-green">
+                    {svc.icon}
+                  </span>
+                  <h3 className="mb-2.5 text-xl font-bold">{svc.title}</h3>
+                  <p className="mb-5.5 flex-grow text-[14.5px] text-ink-soft">{svc.body}</p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo"
+                  >
+                    Ver solución
+                    <span>→</span>
+                  </Link>
+                </Reveal>
+              )
+            )}
+          </div>
+
+          {!swiped && (
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 right-2 flex h-9 w-9 -translate-y-1/2 animate-swipe-hint items-center justify-center rounded-full bg-ink/80 text-white md:hidden"
             >
-              {svc.icon}
-              <div className="px-7.5 pt-5.5 pb-1.5">
-                <div className="mb-3.5 font-mono text-xs font-bold text-indigo">
-                  {svc.letter}
-                </div>
-                <h3 className="mb-2.5 text-xl font-bold">{svc.title}</h3>
-                <p className="pb-7.5 text-[14.5px] text-ink-soft">{svc.body}</p>
-              </div>
-            </Reveal>
+              <ChevronRight size={18} />
+            </div>
+          )}
+        </div>
+
+        <div className="mt-5 flex justify-center gap-2 md:hidden">
+          {services.map((svc, i) => (
+            <button
+              key={svc.title}
+              type="button"
+              aria-label={`Ir a ${svc.title}`}
+              onClick={() => scrollToIndex(i)}
+              className={`h-1.5 rounded-full transition-all ${
+                i === activeIndex ? "w-5 bg-indigo" : "w-1.5 bg-line"
+              }`}
+            />
           ))}
         </div>
       </div>

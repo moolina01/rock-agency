@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { useAnimationFrame, useReducedMotion } from "framer-motion";
+import { ShoppingBag, Boxes, PackageSearch, Truck, Plug, BarChart3 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionMarker from "@/components/ui/SectionMarker";
 
@@ -101,9 +102,18 @@ const steps = [
   },
 ];
 
+const capabilities = [
+  { icon: <ShoppingBag size={18} />, label: "Pedidos" },
+  { icon: <Boxes size={18} />, label: "Inventarios" },
+  { icon: <PackageSearch size={18} />, label: "Picking" },
+  { icon: <Truck size={18} />, label: "Despachos" },
+  { icon: <Plug size={18} />, label: "Integración con Uber Direct" },
+  { icon: <BarChart3 size={18} />, label: "Reportes" },
+];
+
 export default function Fium() {
   return (
-    <section id="fium" className="bg-ink py-24 text-white">
+    <section id="fium" className="bg-[#16151a] py-24 text-white">
       <div className="mx-auto max-w-[1220px] px-6 sm:px-10">
         <Reveal>
           <SectionMarker num="04" label="App propia · entrega same-day" dark />
@@ -157,6 +167,26 @@ export default function Fium() {
             ))}
           </div>
         </div>
+
+        <Reveal delay={2} className="mt-14 border-t border-[#2A2933] pt-10">
+          <p className="mb-6 font-mono text-xs tracking-[0.06em] text-[#8b8994] uppercase">
+            Fium: la plataforma que conecta toda tu operación
+          </p>
+          <div className="grid grid-cols-2 gap-x-3 gap-y-3 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-5 lg:grid-cols-6">
+            {capabilities.map((c) => (
+              <div key={c.label} className="flex items-center gap-1.5 sm:gap-2.5">
+                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-white/15 text-lime sm:h-8 sm:w-8">
+                  <span className="[&>svg]:h-3 [&>svg]:w-3 sm:[&>svg]:h-[18px] sm:[&>svg]:w-[18px]">
+                    {c.icon}
+                  </span>
+                </span>
+                <span className="text-[10.5px] leading-tight font-medium text-white sm:text-[13.5px]">
+                  {c.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

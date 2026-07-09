@@ -7,7 +7,7 @@ export default function CtaStrip() {
   return (
     <section id="contacto" className="bg-paper pb-24">
       <div className="mx-auto max-w-[1220px] px-6 sm:px-10">
-        <Reveal className="rounded-3xl bg-green px-6 py-16 text-center text-paper sm:px-12">
+        <Reveal className="rounded-3xl bg-green px-6 py-16 text-center text-[#f4f1ea] sm:px-12">
           <h2 className="mb-4 text-[28px] font-extrabold sm:text-4xl lg:text-[44px]">
             Saca la calculadora con nosotros
           </h2>

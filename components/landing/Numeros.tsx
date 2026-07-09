@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import SectionMarker from "@/components/ui/SectionMarker";
 
@@ -37,7 +38,7 @@ const cells = [
     delay: 2 as const,
   },
   {
-    tone: "bg-ink text-white",
+    tone: "bg-[#16151a] text-white",
     kicker: "text-[#9C9AA6]",
     k: "Productos",
     v: "20K+",
@@ -59,15 +60,28 @@ export default function Numeros() {
     <section className="bg-paper py-24">
       <div className="mx-auto max-w-[1220px] px-6 sm:px-10">
         <Reveal>
-          <SectionMarker num="06" label="La agencia en números" />
+          <SectionMarker num="06" label="Por qué confiar en nosotros" />
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-4.5 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr] lg:auto-rows-[190px]">
+        <Reveal delay={0} className="mb-6 flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2.5 rounded-full border border-line bg-paper-2 py-1.5 pr-4 pl-1.5 font-mono text-xs font-semibold text-ink">
+            <Image
+              src="/Shopify-Logo.jpg"
+              alt=""
+              width={26}
+              height={26}
+              className="h-6.5 w-6.5 rounded-[6px] object-cover"
+            />
+            Shopify Partners · Chile &amp; Argentina
+          </span>
+        </Reveal>
+
+        <div className="-mx-6 flex snap-x snap-mandatory gap-4.5 overflow-x-auto px-6 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-[1.3fr_1fr_1fr] lg:auto-rows-[190px] lg:overflow-visible lg:px-0 lg:pb-0 lg:snap-none [&::-webkit-scrollbar]:hidden">
           {cells.map((cell) => (
             <Reveal
               key={cell.k}
               delay={cell.delay}
-              className={`flex flex-col justify-between overflow-hidden rounded-2xl p-6.5 ${cell.tone}`}
+              className={`flex w-[70%] max-w-[240px] flex-shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl p-6.5 lg:w-auto lg:max-w-none ${cell.tone}`}
             >
               <span className={`font-mono text-xs tracking-[0.06em] uppercase ${cell.kicker}`}>
                 {cell.k}
