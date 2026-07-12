@@ -98,7 +98,7 @@ const steps = [
   {
     n: "04",
     title: "El cliente vuelve la próxima semana",
-    body: "La compra de supermercado se repite. Un buen reparto hoy es la venta del próximo lunes — y esa venta es 100% tuya.",
+    body: "La compra de supermercado se repite: un buen delivery hoy es la venta del próximo lunes, y esa venta es 100% tuya.",
   },
 ];
 
@@ -136,10 +136,10 @@ export default function Fium() {
 
         <Reveal delay={1} className="mb-13 max-w-[700px]">
           <h2 className="mb-4.5 text-[30px] leading-[1.03] font-extrabold sm:text-4xl lg:text-[50px]">
-            Fium: tu reparto, sin contratar a nadie
+            Fium: tu delivery, sin contratar a nadie
           </h2>
           <p className="text-[17px] text-[#B4B2BE]">
-            Un motoboy propio cuesta sueldo, moto, bencina y dolores de cabeza —
+            Un motoboy propio cuesta sueldo, moto, bencina y dolores de cabeza,
             venda o no venda. Con Fium, nuestra app propia, un repartidor de
             Uber retira cada pedido y lo entrega en menos de 60 minutos. Pagas
             por entrega, no por tener a alguien esperando.

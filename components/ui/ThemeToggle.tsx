@@ -25,8 +25,12 @@ function getServerSnapshot() {
   return true;
 }
 
+export function useIsDark() {
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
 export default function ThemeToggle({ className = "" }: { className?: string }) {
-  const isDark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const isDark = useIsDark();
 
   return (
     <button

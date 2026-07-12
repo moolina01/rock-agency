@@ -22,6 +22,7 @@ const services = [
   },
   {
     icon: <Package size={22} />,
+    image: "/cajas.png",
     title: "Distribuidoras Mayoristas",
     body: "Catálogos B2B, precios por volumen, cotizaciones y compras personalizadas.",
   },
@@ -70,8 +71,9 @@ export default function Servicios() {
             Plataformas diseñadas para tu industria
           </h2>
           <p className="text-[17px] text-ink-soft">
-            Entendemos los desafíos de tu negocio y creamos soluciones que
-            generan resultados reales.
+            Un supermercado no vende igual que un minimarket ni que una
+            distribuidora, por eso construimos tu tienda según cómo trabajas
+            tú.
           </p>
         </Reveal>
 

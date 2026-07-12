@@ -21,7 +21,7 @@ export default function Work() {
             Nuestro trabajo
           </h2>
           <p className="mt-3 text-ink-soft">
-            Proyectos reales que hemos construido, y el producto propio que
+            Proyectos reales que hemos construido y el producto propio que
             desarrollamos sobre Shopify.
           </p>
         </motion.div>

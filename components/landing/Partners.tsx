@@ -41,8 +41,8 @@ export default function Partners() {
             Nuestros Partners
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-ink-soft md:text-base">
-            Unidos por una búsqueda constante de la perfección y un propósito
-            común.
+            Trabajamos codo a codo con las plataformas que tu negocio ya usa
+            todos los días.
           </p>
         </motion.div>
 

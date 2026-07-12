@@ -48,7 +48,7 @@ const tiles = [
       </div>
     ),
     title: "Tu margen queda contigo",
-    body: "Las apps de reparto cobran hasta un 30% por pedido. En tu propia tienda online, cada peso que vendes es tuyo.",
+    body: "Las apps de delivery cobran hasta un 30% por pedido. En tu propia tienda online, cada peso que vendes es tuyo.",
   },
   {
     scene: (
@@ -58,7 +58,7 @@ const tiles = [
         </div>
       </div>
     ),
-    title: "Reparto sin contratar motoboy",
+    title: "Delivery sin contratar motoboy",
     body: "Nada de sueldo fijo, moto ni reemplazos. Con Fium, un repartidor de Uber retira el pedido y lo entrega en menos de 60 minutos. Pagas solo cuando vendes.",
   },
   {
@@ -75,7 +75,7 @@ const tiles = [
       </div>
     ),
     title: "La página nunca vende lo que no tienes",
-    body: "Conectamos tu tienda con la caja y la bodega: si se acabó en el local, se acabó en la página. Sin reclamos ni devoluciones.",
+    body: "Conectamos tu tienda con la caja y la bodega: si se acabó en el local, se acabó en la página, sin reclamos ni devoluciones.",
   },
 ];
 
@@ -119,12 +119,12 @@ export default function Diagnostico() {
 
         <Reveal delay={1} className="mb-13 max-w-[700px]">
           <h2 className="mb-4.5 text-[30px] leading-[1.03] font-extrabold sm:text-4xl lg:text-[50px]">
-            Vender por apps de reparto{" "}
+            Vender por apps de delivery{" "}
             <Annotation type="circle">te sale caro</Annotation>
           </h2>
           <p className="text-[17px] text-ink-soft">
-            Las apps de reparto cobran comisiones de hasta un 30% por pedido —
-            con tu propia tienda, ese margen queda en tu negocio.
+            Las apps te cobran hasta un 30% de comisión por pedido. Con tu
+            propia tienda, ese margen se queda en tu negocio.
           </p>
         </Reveal>
 

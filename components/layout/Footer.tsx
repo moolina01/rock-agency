@@ -21,7 +21,7 @@ export default function Footer() {
             </div>
             <p className="max-w-[260px] text-sm leading-relaxed">
               Ayudamos a supermercados y minimarkets chilenos a vender online
-              con su propio canal: sin comisiones por pedido, con reparto en
+              con su propio canal: sin comisiones por pedido, con delivery en
               menos de 60 minutos vía Fium.
             </p>
             <div className="flex items-center gap-3">

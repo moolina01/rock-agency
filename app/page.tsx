@@ -9,7 +9,7 @@ import Fium from "@/components/landing/Fium";
 // import Integraciones from "@/components/landing/Integraciones";
 import Numeros from "@/components/landing/Numeros";
 import Plans from "@/components/landing/Plans";
-import Work from "@/components/landing/Work";
+// import Work from "@/components/landing/Work";
 import CtaStrip from "@/components/landing/CtaStrip";
 import Footer from "@/components/layout/Footer";
 
@@ -27,7 +27,7 @@ export default function Home() {
       <Partners />
       <Numeros />
       <Plans />
-      <Work />
+      {/* <Work /> */}
       <CtaStrip />
       <Footer />
     </>

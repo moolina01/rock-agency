@@ -7,7 +7,7 @@ const marqueeItems = [
     <b className="font-semibold text-ink">$0 comisión</b> por pedido
   </>,
   <>
-    Reparto <b className="font-semibold text-ink">&lt;60 min</b> con Fium
+    Delivery <b className="font-semibold text-ink">&lt;60 min</b> con Fium
   </>,
   "Webpay · Mercado Pago · Fintoc",
   "Stock conectado a tu bodega",

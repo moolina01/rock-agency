@@ -58,9 +58,9 @@ export default function Integraciones() {
           </Reveal>
           <Reveal delay={1}>
             <p className="text-base text-ink-soft">
-              Tarjeta, transferencia o billetera digital — conectamos tu tienda
-              con los medios de pago que tus clientes usan todos los días, y con
-              las herramientas que ya mueven tu local.
+              Conectamos tu tienda con los medios de pago que tus clientes ya
+              usan (tarjeta, transferencia o billetera digital) y con las
+              herramientas que mueven tu local.
             </p>
           </Reveal>
         </div>

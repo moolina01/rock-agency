@@ -16,7 +16,6 @@ const navItems: NavItem[] = [
   { label: "Diagnóstico", href: "#diagnostico" },
   { label: "Servicios", href: "#servicios" },
   { label: "Fium", href: "#fium" },
-  { label: "Integraciones", href: "#integraciones" },
   { label: "Planes", href: "#planes" },
   { label: "Proyectos", href: "/projects" },
   { label: "FAQ", href: "/faq" },
