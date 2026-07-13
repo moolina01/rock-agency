@@ -132,7 +132,7 @@ export default function Diagnostico() {
           <div
             ref={trackRef}
             onScroll={() => setSwiped(true)}
-            className="-mx-6 flex snap-x snap-mandatory gap-5.5 overflow-x-auto px-6 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0 md:snap-none [&::-webkit-scrollbar]:hidden"
+            className="-mx-6 flex snap-x snap-proximity gap-5.5 overflow-x-auto touch-pan-x px-6 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0 md:snap-none [&::-webkit-scrollbar]:hidden"
           >
             {tiles.map((tile, i) => (
               <Reveal
@@ -141,7 +141,7 @@ export default function Diagnostico() {
                   cardRefs.current[i] = el as HTMLDivElement | null;
                 }}
                 delay={i as 0 | 1 | 2}
-                className="w-[82%] max-w-[300px] flex-shrink-0 snap-start overflow-hidden rounded-2xl border border-line bg-paper-2 transition hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-22px_rgba(22,21,26,0.35)] md:w-auto md:max-w-none"
+                className="w-[82%] max-w-[300px] flex-shrink-0 snap-start overflow-hidden rounded-2xl border border-line bg-paper-2 transition pointer-fine:hover:-translate-y-1.5 pointer-fine:hover:shadow-[0_20px_40px_-22px_rgba(22,21,26,0.35)] md:w-auto md:max-w-none"
               >
                 <div className="h-[170px] border-b border-line">{tile.scene}</div>
                 <div className="p-5.5 pt-5">

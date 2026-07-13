@@ -29,7 +29,7 @@ export function useIsDark() {
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
 
-export default function ThemeToggle({ className = "" }: { className?: string }) {
+export default function ThemeToggle({ className = "inline-flex" }: { className?: string }) {
   const isDark = useIsDark();
 
   return (
@@ -37,7 +37,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
       type="button"
       onClick={() => applyTheme(!isDark)}
       aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-      className={`inline-flex h-9.5 w-9.5 flex-shrink-0 items-center justify-center rounded-full border border-line text-ink transition hover:border-ink ${className}`}
+      className={`h-9.5 w-9.5 flex-shrink-0 items-center justify-center rounded-full border border-line text-ink transition hover:border-ink ${className}`}
     >
       {isDark ? <Sun size={16} /> : <Moon size={16} />}
     </button>

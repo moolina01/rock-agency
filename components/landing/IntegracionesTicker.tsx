@@ -47,9 +47,9 @@ export default function IntegracionesTicker() {
           <div
             ref={trackRef}
             onScroll={() => setSwiped(true)}
-            className="overflow-hidden overflow-x-auto rounded-2xl border border-white/10 bg-[#0d0d10] [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
+            className="overflow-hidden overflow-x-auto touch-pan-x rounded-2xl border border-white/10 bg-[#0d0d10] [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
           >
-            <div className="flex snap-x snap-mandatory divide-x divide-white/10 md:snap-none">
+            <div className="flex snap-x snap-proximity divide-x divide-white/10 md:snap-none">
               <div className="flex w-[108px] max-w-[108px] flex-shrink-0 snap-start items-center px-3.5 py-3.5 font-mono text-[11px] leading-snug text-[#8b8994] md:w-auto md:max-w-none md:flex-1 md:px-5 md:py-4 md:text-xs">
                 Integraciones
                 <br />

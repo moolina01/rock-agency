@@ -54,12 +54,12 @@ export default function Numeros() {
           <SectionMarker num="06" label="Por qué confiar en nosotros" />
         </Reveal>
 
-        <div className="-mx-6 flex snap-x snap-mandatory gap-4.5 overflow-x-auto px-6 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-[1.3fr_1fr_1fr] lg:auto-rows-[190px] lg:overflow-visible lg:px-0 lg:pb-0 lg:snap-none [&::-webkit-scrollbar]:hidden">
+        <div className="grid grid-cols-2 auto-rows-[150px] gap-3.5 sm:auto-rows-[170px] sm:gap-4.5 lg:grid-cols-[1.3fr_1fr_1fr] lg:auto-rows-[190px]">
           {cells.map((cell) => (
             <Reveal
               key={cell.k}
               delay={cell.delay}
-              className={`flex w-[70%] max-w-[240px] flex-shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl p-6.5 lg:w-auto lg:max-w-none ${cell.tone}`}
+              className={`flex flex-col justify-between overflow-hidden rounded-2xl p-5 sm:p-6.5 ${cell.tone}`}
             >
               <span className={`font-mono text-xs tracking-[0.06em] uppercase ${cell.kicker}`}>
                 {cell.k}

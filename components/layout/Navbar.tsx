@@ -28,8 +28,19 @@ const sectionIds = navItems
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  // Achica el header al bajar, vuelve a su tamaño normal al subir
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 8);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Scroll-spy: resalta el link de la sección que está pasando por el centro del viewport
   useEffect(() => {
@@ -99,9 +110,27 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-line bg-paper/85 backdrop-blur-md">
-      <div className="mx-auto flex h-[78px] max-w-[1220px] items-center justify-between px-6 sm:px-10">
+      <div
+        className={`relative mx-auto flex max-w-[1220px] items-center justify-between px-6 transition-[height] duration-300 ease-out sm:px-10 ${
+          scrolled ? "h-[58px]" : "h-[78px]"
+        }`}
+      >
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Abrir menú"
+          className="inline-flex items-center justify-center rounded-lg border border-line bg-paper-2 px-3 py-2 text-sm text-ink lg:hidden"
+        >
+          ☰
+        </button>
+
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.75 font-heading text-[17px] font-extrabold">
+        <Link
+          href="/"
+          className={`flex items-center gap-2.75 font-heading text-[17px] font-extrabold transition-transform duration-300 ease-out max-lg:absolute max-lg:top-1/2 max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:-translate-y-1/2 ${
+            scrolled ? "scale-90" : "scale-100"
+          }`}
+        >
           <Image
             src="/logo.png"
             alt="Rock Agency"
@@ -154,15 +183,6 @@ export default function Navbar() {
           >
             Hablemos →
           </Link>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Abrir menú"
-            className="inline-flex items-center justify-center rounded-lg border border-line bg-paper-2 px-3 py-2 text-sm text-ink lg:hidden"
-          >
-            ☰
-          </button>
         </div>
       </div>
 

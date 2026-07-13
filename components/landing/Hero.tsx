@@ -80,6 +80,16 @@ export default function Hero() {
 
   const { line3, typing, showUnderline } = useTypewriterLoop();
 
+  function handlePlanesClick(e: React.MouseEvent) {
+    e.preventDefault();
+    const el = document.getElementById("planes");
+    if (!el) return;
+
+    const navOffset = 88;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+
   return (
     <section className="relative overflow-hidden pt-12 pb-11">
       {/* animated bg */}
@@ -172,9 +182,8 @@ export default function Hero() {
               transition={{ duration: 1, delay: 0.5 }}
               className="mb-6 max-w-[500px] text-lg text-ink-soft"
             >
-              Diseñamos y desarrollamos tiendas Shopify de alto rendimiento,
-              sin comisión por pedido como en las apps de delivery, y con
-              delivery propio en menos de 60 minutos gracias a Fium.
+              Diseñamos, desarrollamos y optimizamos tiendas Shopify de alto
+              rendimiento que venden más y operan de forma más eficiente.
             </motion.p>
 
             <motion.div
@@ -191,10 +200,11 @@ export default function Hero() {
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link
-                href="/projects"
+                href="#planes"
+                onClick={handlePlanesClick}
                 className="inline-flex items-center gap-2.5 rounded-full border-[1.5px] border-ink px-7 py-4 text-[15px] font-semibold text-ink transition hover:bg-ink hover:text-paper"
               >
-                Ver casos de éxito
+                Ver planes
               </Link>
             </motion.div>
           </div>

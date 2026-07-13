@@ -90,7 +90,7 @@ export default function Plans() {
           </p>
         </Reveal>
 
-        <div className="-mx-6 flex snap-x snap-mandatory gap-5.5 overflow-x-auto px-6 pt-4 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pt-0 md:pb-0 md:snap-none [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-6 flex snap-x snap-proximity gap-5.5 overflow-x-auto touch-pan-x px-6 pt-4 pb-1 [scrollbar-width:none] sm:-mx-10 sm:px-10 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pt-0 md:pb-0 md:snap-none [&::-webkit-scrollbar]:hidden">
           {plans.map((plan, i) => {
             const canCollapse = plan.items.length > VISIBLE_ITEMS;
             const isExpanded = expanded[plan.name] ?? false;
@@ -101,7 +101,7 @@ export default function Plans() {
               <Reveal
                 key={plan.name}
                 delay={i as 0 | 1 | 2}
-                className={`relative flex w-[85%] max-w-[320px] flex-shrink-0 snap-start flex-col rounded-[18px] border-[1.5px] bg-paper-2 p-8.5 pt-9 transition hover:-translate-y-1.5 md:w-auto md:max-w-none ${
+                className={`relative flex w-[85%] max-w-[320px] flex-shrink-0 snap-start flex-col rounded-[18px] border-[1.5px] bg-paper-2 p-8.5 pt-9 transition pointer-fine:hover:-translate-y-1.5 md:w-auto md:max-w-none ${
                   plan.featured
                     ? "border-indigo hover:border-indigo"
                     : "border-line hover:border-ink"
