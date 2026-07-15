@@ -159,7 +159,17 @@ export default function Hero() {
                   animate={{ y: 0 }}
                   transition={{ duration: 0.9, ease: lineEase, delay: 0.12 }}
                 >
-                  para supermercados y
+                  para supermercados,
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden">
+                <motion.span
+                  className="block"
+                  initial={reduceMotion ? false : { y: "105%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.9, ease: lineEase, delay: 0.2 }}
+                >
+                  distribuidoras y
                 </motion.span>
               </span>
               <span className="block min-h-[1.3em] pb-3 whitespace-nowrap">
