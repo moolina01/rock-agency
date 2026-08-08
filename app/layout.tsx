@@ -24,19 +24,22 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Rock Agency — Expertos en Shopify",
+    default:
+      "Rock Agency — Expertos en eCommerce para supermercados, distribuidoras y minimarkets",
     template: "%s — Rock Agency",
   },
   description:
-    "Agencia especializada en Shopify. Creamos, migramos y optimizamos tiendas e-commerce que venden. Diseño, conversión y entregas rápidas con Fium.",
+    "Agencia Shopify Partners para supermercados, distribuidoras y minimarkets en Chile. Diseñamos, desarrollamos y optimizamos tiendas Shopify de alto rendimiento que venden más y operan de forma más eficiente, con entregas same-day a través de Fium.",
   keywords: [
     "agencia Shopify",
-    "expertos Shopify",
+    "Shopify Partners",
+    "ecommerce supermercados",
+    "tienda online minimarket",
+    "ecommerce distribuidoras",
     "crear tienda Shopify",
     "migración a Shopify",
     "ecommerce Chile",
-    "diseño ecommerce",
-    "Shopify Plus",
+    "Fium delivery",
   ],
   applicationName: siteName,
   alternates: {
@@ -47,9 +50,10 @@ export const metadata: Metadata = {
     locale: "es_CL",
     url: siteUrl,
     siteName,
-    title: "Rock Agency — Expertos en Shopify",
+    title:
+      "Rock Agency — Expertos en eCommerce para supermercados, distribuidoras y minimarkets",
     description:
-      "Creamos, migramos y optimizamos tiendas Shopify que venden. Diseño, conversión y entregas rápidas con Fium.",
+      "Agencia Shopify Partners para supermercados, distribuidoras y minimarkets en Chile. Tiendas Shopify de alto rendimiento que venden más y operan de forma más eficiente, con entregas same-day con Fium.",
     images: [
       {
         url: "/logo.png",
@@ -61,9 +65,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rock Agency — Expertos en Shopify",
+    title:
+      "Rock Agency — Expertos en eCommerce para supermercados, distribuidoras y minimarkets",
     description:
-      "Creamos, migramos y optimizamos tiendas Shopify que venden.",
+      "Agencia Shopify Partners para supermercados, distribuidoras y minimarkets en Chile.",
     images: ["/logo.png"],
   },
   robots: {

@@ -1,34 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Reveal from "@/components/ui/Reveal";
+import SectionMarker from "@/components/ui/SectionMarker";
 import ProjectsGrid from "@/components/projects/ProjectsGrid";
-
-const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Work() {
   return (
     <section id="proyectos" className="bg-paper py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease }}
-          className="mx-auto mb-14 max-w-2xl text-center"
-        >
-          <h2 className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl">
-            Nuestro trabajo
+      <div className="mx-auto max-w-[1220px] px-6 sm:px-10">
+        <Reveal>
+          <SectionMarker num="08" label="Con quién trabajamos" />
+        </Reveal>
+
+        <Reveal delay={1} className="mb-13 max-w-[700px]">
+          <h2 className="mb-4.5 text-[30px] leading-[1.03] font-extrabold sm:text-4xl lg:text-[50px]">
+            Enfocados en distribuidoras y minimarkets
           </h2>
-          <p className="mt-3 text-ink-soft">
-            Proyectos reales que hemos construido y el producto propio que
-            desarrollamos sobre Shopify.
+          <p className="text-[17px] text-ink-soft">
+            Estos son los proyectos más relevantes: negocios reales, hoy en
+            producción, del mismo tipo que el tuyo.
           </p>
-        </motion.div>
+        </Reveal>
 
-        <ProjectsGrid />
+        <Reveal delay={2}>
+          <ProjectsGrid />
+        </Reveal>
 
-        <div className="mt-12 text-center">
+        <Reveal delay={3} className="mt-12 text-center">
           <Link
             href="/projects"
             className="inline-flex items-center justify-center rounded-full border border-line bg-paper-2 px-7 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-indigo"
@@ -36,7 +35,7 @@ export default function Work() {
             Ver todos los proyectos
             <span className="ml-2">→</span>
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
