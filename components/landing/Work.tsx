@@ -10,16 +10,15 @@ export default function Work() {
     <section id="proyectos" className="bg-paper py-24">
       <div className="mx-auto max-w-[1220px] px-6 sm:px-10">
         <Reveal>
-          <SectionMarker num="08" label="Con quién trabajamos" />
+          <SectionMarker num="05" label="Con quién trabajamos" />
         </Reveal>
 
         <Reveal delay={1} className="mb-13 max-w-[700px]">
           <h2 className="mb-4.5 text-[30px] leading-[1.03] font-extrabold sm:text-4xl lg:text-[50px]">
-            Enfocados en distribuidoras y minimarkets
+            Proyectos relevantes
           </h2>
           <p className="text-[17px] text-ink-soft">
-            Estos son los proyectos más relevantes: negocios reales, hoy en
-            producción, del mismo tipo que el tuyo.
+            Selección de proyectos activos en el mismo rubro que el tuyo.
           </p>
         </Reveal>
 

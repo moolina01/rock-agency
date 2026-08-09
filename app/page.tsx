@@ -24,10 +24,11 @@ export default function Home() {
       <Catalogo />
       <Fium />
       {/* <Integraciones /> */}
+
       <Partners />
       <Numeros />
-      <Plans />
       <Work />
+      <Plans />
       <CtaStrip />
       <Footer />
     </>
