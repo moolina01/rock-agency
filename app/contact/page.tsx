@@ -1,10 +1,24 @@
 import ContactForm from "@/components/contact/ContactForm";
 import Annotation from "@/components/ui/Annotation";
 import { MessageCircle, Clock, Award, Zap, MapPin } from "lucide-react";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Contacto",
-  description: "Hablemos de tu tienda Shopify. Te respondemos en menos de 24 horas.",
+const title = "Contacto";
+const description =
+  "Hablemos de tu tienda Shopify. Cotiza el desarrollo de tu ecommerce para distribuidora, mayorista, minimarket o supermercado. Te respondemos en menos de 24 horas.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  keywords: [
+    "cotizar tienda Shopify",
+    "agencia Shopify Chile",
+    "ecommerce para mayoristas",
+    "ecommerce para distribuidoras",
+  ],
+  alternates: { canonical: "/contact" },
+  openGraph: { title, description, url: "/contact" },
+  twitter: { title, description },
 };
 
 const trustItems = [

@@ -9,11 +9,12 @@ import { useIsDark } from "@/components/ui/ThemeToggle";
 
 const lineEase: [number, number, number, number] = [0.2, 0.75, 0.2, 1];
 
-const TYPE_LINE_3 = "minimarkets.";
+const TYPE_WORDS = ["minimarkets.", "mayoristas."];
 
 function useTypewriterLoop() {
   const reduceMotion = useReducedMotion();
-  const [line3, setLine3] = useState(() => (reduceMotion ? TYPE_LINE_3 : ""));
+  const [word, setWord] = useState(TYPE_WORDS[0]);
+  const [line3, setLine3] = useState(() => (reduceMotion ? TYPE_WORDS[0] : ""));
   const [typing, setTyping] = useState(false);
   const [showUnderline, setShowUnderline] = useState(() => !!reduceMotion);
 
@@ -21,6 +22,7 @@ function useTypewriterLoop() {
     if (reduceMotion) return;
 
     let cancelled = false;
+    let index = 0;
     const timers: ReturnType<typeof setTimeout>[] = [];
     const schedule = (fn: () => void, ms: number) => {
       const id = setTimeout(() => {
@@ -30,6 +32,8 @@ function useTypewriterLoop() {
     };
 
     function runCycle() {
+      const current = TYPE_WORDS[index];
+      setWord(current);
       setLine3("");
       setShowUnderline(false);
       setTyping(true);
@@ -38,8 +42,8 @@ function useTypewriterLoop() {
       const eraseSpeed = 22;
       let t = 900;
 
-      for (let i = 1; i <= TYPE_LINE_3.length; i++) {
-        schedule(() => setLine3(TYPE_LINE_3.slice(0, i)), t);
+      for (let i = 1; i <= current.length; i++) {
+        schedule(() => setLine3(current.slice(0, i)), t);
         t += typeSpeed;
       }
 
@@ -54,12 +58,13 @@ function useTypewriterLoop() {
         setShowUnderline(false);
         setTyping(true);
       }, t);
-      for (let i = TYPE_LINE_3.length - 1; i >= 0; i--) {
-        schedule(() => setLine3(TYPE_LINE_3.slice(0, i)), t);
+      for (let i = current.length - 1; i >= 0; i--) {
+        schedule(() => setLine3(current.slice(0, i)), t);
         t += eraseSpeed;
       }
 
       t += 600;
+      index = (index + 1) % TYPE_WORDS.length;
       schedule(runCycle, t);
     }
 
@@ -71,14 +76,14 @@ function useTypewriterLoop() {
     };
   }, [reduceMotion]);
 
-  return { line3, typing, showUnderline };
+  return { line3, typing, showUnderline, word };
 }
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
   const isDark = useIsDark();
 
-  const { line3, typing, showUnderline } = useTypewriterLoop();
+  const { line3, typing, showUnderline, word } = useTypewriterLoop();
 
   function handlePlanesClick(e: React.MouseEvent) {
     e.preventDefault();
@@ -138,7 +143,7 @@ export default function Hero() {
               <span className="relative h-[7px] w-[7px] rounded-full bg-green dark:bg-lime">
                 <span className="absolute -inset-1 animate-ping-soft rounded-full border-[1.5px] border-green dark:border-lime" />
               </span>
-              Agencia Shopify Partners · Supermercados y minimarkets en Chile
+              Agencia Shopify Partners · Supermercados, distribuidoras y mayoristas en Chile
             </div>
 
             <h1 className="mt-5 mb-5 text-[36px] leading-[1.05] font-extrabold sm:text-5xl lg:text-[58px]">
@@ -174,7 +179,7 @@ export default function Hero() {
               </span>
               <span className="block min-h-[1.3em] pb-3 whitespace-nowrap">
                 {showUnderline ? (
-                  <Annotation type="underline">{TYPE_LINE_3}</Annotation>
+                  <Annotation type="underline">{word}</Annotation>
                 ) : (
                   <>
                     {line3}
@@ -193,7 +198,8 @@ export default function Hero() {
               className="mb-6 max-w-[500px] text-lg text-ink-soft"
             >
               Diseñamos, desarrollamos y optimizamos tiendas Shopify de alto
-              rendimiento que venden más y operan de forma más eficiente.
+              rendimiento para supermercados, distribuidoras y mayoristas que
+              venden más y operan de forma más eficiente.
             </motion.p>
 
             <motion.div

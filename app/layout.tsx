@@ -21,21 +21,29 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "700"],
 });
 
+const defaultTitle =
+  "Rock Agency — Shopify para Distribuidoras, Mayoristas y Minimarkets";
+const defaultDescription =
+  "Agencia Shopify Partners especializada en distribuidoras, mayoristas, minimarkets y supermercados en Chile. Diseñamos, desarrollamos y optimizamos tiendas Shopify B2B y B2C de alto rendimiento que venden más y operan de forma más eficiente, con entregas same-day a través de Fium.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default:
-      "Rock Agency — Expertos en eCommerce para supermercados, distribuidoras y minimarkets",
+    default: defaultTitle,
     template: "%s — Rock Agency",
   },
-  description:
-    "Agencia Shopify Partners para supermercados, distribuidoras y minimarkets en Chile. Diseñamos, desarrollamos y optimizamos tiendas Shopify de alto rendimiento que venden más y operan de forma más eficiente, con entregas same-day a través de Fium.",
+  description: defaultDescription,
   keywords: [
     "agencia Shopify",
     "Shopify Partners",
+    "ecommerce mayoristas",
+    "tienda online mayorista",
+    "Shopify para distribuidoras",
+    "ecommerce distribuidoras",
+    "portal B2B Shopify",
+    "venta al por mayor online",
     "ecommerce supermercados",
     "tienda online minimarket",
-    "ecommerce distribuidoras",
     "crear tienda Shopify",
     "migración a Shopify",
     "ecommerce Chile",
@@ -50,10 +58,8 @@ export const metadata: Metadata = {
     locale: "es_CL",
     url: siteUrl,
     siteName,
-    title:
-      "Rock Agency — Expertos en eCommerce para supermercados, distribuidoras y minimarkets",
-    description:
-      "Agencia Shopify Partners para supermercados, distribuidoras y minimarkets en Chile. Tiendas Shopify de alto rendimiento que venden más y operan de forma más eficiente, con entregas same-day con Fium.",
+    title: defaultTitle,
+    description: defaultDescription,
     images: [
       {
         url: "/logo.png",
@@ -65,10 +71,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Rock Agency — Expertos en eCommerce para supermercados, distribuidoras y minimarkets",
-    description:
-      "Agencia Shopify Partners para supermercados, distribuidoras y minimarkets en Chile.",
+    title: defaultTitle,
+    description: defaultDescription,
     images: ["/logo.png"],
   },
   robots: {
@@ -79,6 +83,40 @@ export const metadata: Metadata = {
     icon: "/logo.png",
     apple: "/logo.png",
   },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${siteUrl}/#organization`,
+  name: siteName,
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  image: `${siteUrl}/logo.png`,
+  description: defaultDescription,
+  areaServed: {
+    "@type": "Country",
+    name: "Chile",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "CL",
+  },
+  knowsAbout: [
+    "Shopify",
+    "eCommerce B2B",
+    "Distribuidoras",
+    "Mayoristas",
+    "Minimarkets",
+    "Supermercados",
+    "Same-day delivery",
+  ],
+  serviceType: [
+    "Desarrollo de tiendas Shopify",
+    "eCommerce para distribuidoras",
+    "eCommerce para mayoristas",
+    "eCommerce para minimarkets y supermercados",
+  ],
 };
 
 export default function RootLayout({
@@ -92,6 +130,12 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem("theme");var d=t?t==="dark":true;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
           }}
         />
       </head>

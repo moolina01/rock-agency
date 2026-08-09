@@ -1,15 +1,41 @@
 import FaqAccordion from "@/components/faq/FaqAccordion";
 import Annotation from "@/components/ui/Annotation";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { faqs } from "@/lib/faq-data";
 
-export const metadata = {
-  title: "FAQ",
-  description: "Preguntas frecuentes sobre nuestros servicios de desarrollo de tiendas Shopify.",
+const title = "Preguntas frecuentes";
+const description =
+  "Preguntas frecuentes sobre nuestros servicios de desarrollo de tiendas Shopify para distribuidoras, mayoristas, minimarkets y supermercados.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: "/faq" },
+  openGraph: { title, description, url: "/faq" },
+  twitter: { title, description },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
 };
 
 export default function FaqPage() {
   return (
     <main className="min-h-screen bg-paper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Fondo decorativo */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-indigo opacity-20 blur-3xl" />

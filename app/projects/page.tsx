@@ -1,10 +1,18 @@
 import ProjectsGrid from "@/components/projects/ProjectsGrid";
 import Annotation from "@/components/ui/Annotation";
 import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "Proyectos",
-  description: "Portafolio de tiendas Shopify diseñadas y desarrolladas por Rock Agency.",
+const title = "Proyectos";
+const description =
+  "Portafolio de tiendas Shopify diseñadas y desarrolladas por Rock Agency para distribuidoras, mayoristas, minimarkets y supermercados en Chile.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: "/projects" },
+  openGraph: { title, description, url: "/projects" },
+  twitter: { title, description },
 };
 
 export default function ProjectsPage() {
